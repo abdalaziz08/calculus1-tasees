@@ -1,0 +1,1562 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="تأسيس كامل لمتطلبات كالكولاس 1 بثماني كتل: شرح من الصفر، أمثلة محلولة خطوة خطوة، أخطاء شائعة، وتمارين مع الحلول.">
+<meta name="theme-color" content="#1D4E89">
+<meta property="og:type" content="website">
+<meta property="og:title" content="تأسيس كالكولاس ١">
+<meta property="og:description" content="من الصفر إلى بداية الكالكولاس — ثماني كتل مع أمثلة محلولة وتمارين.">
+<meta property="og:locale" content="ar_AR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231D4E89'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' font-style='italic' fill='%23fff' text-anchor='middle'%3Ef%3C/text%3E%3C/svg%3E">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>تأسيس كالكولاس ١</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --paper:#FBFAF7;
+  --surface:#FFFFFF;
+  --grid:rgba(29,78,137,.055);
+  --ink:#1A2230;
+  --ink2:#5C6878;
+  --ink3:#8A94A2;
+  --line:#E3E1DB;
+  --pen:#1D4E89;
+  --pen-soft:rgba(29,78,137,.08);
+  --red:#AE382C;
+  --red-soft:rgba(174,56,44,.075);
+  --ok:#2C7A51;
+  --ok-soft:rgba(44,122,81,.08);
+  --shadow:0 1px 2px rgba(26,34,48,.05), 0 8px 24px -12px rgba(26,34,48,.14);
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#10131A;
+    --surface:#171B23;
+    --grid:rgba(140,178,230,.055);
+    --ink:#E6EAF1;
+    --ink2:#98A3B4;
+    --ink3:#6E7A8C;
+    --line:#262C36;
+    --pen:#82B4F2;
+    --pen-soft:rgba(130,180,242,.12);
+    --red:#EE8D7C;
+    --red-soft:rgba(238,141,124,.11);
+    --ok:#5CC189;
+    --ok-soft:rgba(92,193,137,.11);
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#10131A;
+  --surface:#171B23;
+  --grid:rgba(140,178,230,.055);
+  --ink:#E6EAF1;
+  --ink2:#98A3B4;
+  --ink3:#6E7A8C;
+  --line:#262C36;
+  --pen:#82B4F2;
+  --pen-soft:rgba(130,180,242,.12);
+  --red:#EE8D7C;
+  --red-soft:rgba(238,141,124,.11);
+  --ok:#5CC189;
+  --ok-soft:rgba(92,193,137,.11);
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+body{
+  direction:rtl;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:26px 26px;
+  color:var(--ink);
+  font-family:"IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.85;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:820px;margin:0 auto;padding-inline:18px;padding-block:0 72px}
+
+/* ---------- header ---------- */
+.top{
+  position:sticky; top:env(safe-area-inset-top, 0px); z-index:30;
+  background:color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.top-in{max-width:820px;margin:0 auto;padding:10px 18px}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{font-family:"Readex Pro",sans-serif;font-weight:500;font-size:15px;letter-spacing:-.01em}
+.brand b{color:var(--pen)}
+.pcount{font-size:12.5px;color:var(--ink2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:4px;background:var(--line);border-radius:99px;margin-top:9px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0%;background:var(--pen);border-radius:99px;transition:width .35s ease}
+.rail{display:flex;gap:6px;overflow-x:auto;margin-top:9px;padding-bottom:2px;scrollbar-width:thin}
+.rail a{
+  flex:0 0 auto;font-size:12.5px;text-decoration:none;color:var(--ink2);
+  border:1px solid var(--line);border-radius:99px;padding:3px 11px;background:var(--surface);
+  transition:.15s;
+}
+.rail a:hover{color:var(--pen);border-color:var(--pen)}
+.rail a.on{background:var(--pen);border-color:var(--pen);color:#fff}
+
+/* ---------- hero ---------- */
+.hero{padding-block:34px 8px}
+.kicker{
+  font-family:"Readex Pro",sans-serif;font-size:11.5px;font-weight:500;
+  letter-spacing:.16em;color:var(--pen);text-transform:uppercase;
+  direction:ltr;text-align:right;unicode-bidi:isolate;margin-bottom:10px
+}
+h1{
+  font-family:"Readex Pro",sans-serif;font-weight:600;font-size:clamp(28px,6vw,42px);
+  line-height:1.3;margin:0 0 12px;text-wrap:balance;letter-spacing:-.02em
+}
+.lede{font-size:17px;color:var(--ink2);margin:0;max-width:60ch}
+
+/* ---------- generic ---------- */
+h2{
+  font-family:"Readex Pro",sans-serif;font-weight:600;font-size:clamp(21px,4.4vw,27px);
+  line-height:1.4;margin:0;text-wrap:balance;letter-spacing:-.015em
+}
+h3{
+  font-family:"Readex Pro",sans-serif;font-weight:500;font-size:17px;
+  margin:28px 0 10px;letter-spacing:-.01em
+}
+h4{font-weight:600;font-size:15px;margin:20px 0 6px;color:var(--ink)}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px;padding-inline-start:22px}
+li{margin-bottom:7px}
+a{color:var(--pen)}
+hr{border:0;border-top:1px solid var(--line);margin:34px 0}
+strong{font-weight:600}
+
+/* ---------- math ---------- */
+.m{
+  direction:ltr;unicode-bidi:isolate;display:inline-block;
+  font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Cambria,Georgia,serif;
+  font-size:1.06em;line-height:1.4;white-space:nowrap
+}
+.m i{font-style:italic;padding-inline-end:.02em}
+.mb{
+  direction:ltr;unicode-bidi:isolate;text-align:center;
+  font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Cambria,Georgia,serif;
+  font-size:1.16em;margin:16px 0;padding:12px 10px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  overflow-x:auto;line-height:2.1
+}
+.mb i{font-style:italic}
+.mb.plain{background:none;border:0;padding:6px 0;margin:10px 0}
+.fr{display:inline-flex;flex-direction:column;vertical-align:-.62em;text-align:center;margin:0 .18em}
+.fr>span{padding:0 .34em;display:block}
+.fr>span:first-child{border-bottom:1.1px solid currentColor}
+.sq{white-space:nowrap}
+.sq>u{text-decoration:none;border-top:1.1px solid currentColor;padding:0 .14em;margin-inline-start:-.06em;display:inline-block}
+sup{font-size:.72em;line-height:0}
+sub{font-size:.72em;line-height:0}
+
+/* ---------- blocks ---------- */
+.blk{
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:26px 22px;margin-top:22px;box-shadow:var(--shadow);scroll-margin-top:150px
+}
+.blk-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:6px}
+.num{
+  flex:0 0 auto;width:38px;height:38px;border-radius:9px;
+  background:var(--pen-soft);color:var(--pen);
+  display:grid;place-items:center;font-family:"Readex Pro",sans-serif;
+  font-weight:600;font-size:16px;font-variant-numeric:tabular-nums;margin-top:3px
+}
+.meta{font-size:13px;color:var(--ink3);margin:4px 0 0;font-family:"Readex Pro",sans-serif}
+.goal{
+  font-size:14.5px;color:var(--ink2);background:var(--pen-soft);
+  border-inline-start:3px solid var(--pen);border-radius:0 6px 6px 0;
+  padding:9px 13px;margin:16px 0 4px
+}
+
+/* callouts */
+.rule,.warn,.tip{
+  border-radius:var(--r);padding:13px 15px;margin:16px 0;font-size:15px;line-height:1.75
+}
+.rule{background:var(--pen-soft);border:1px solid color-mix(in srgb,var(--pen) 24%,transparent)}
+.warn{background:var(--red-soft);border:1px solid color-mix(in srgb,var(--red) 28%,transparent)}
+.tip{background:var(--ok-soft);border:1px solid color-mix(in srgb,var(--ok) 26%,transparent)}
+.rule>.lbl,.warn>.lbl,.tip>.lbl{
+  display:block;font-family:"Readex Pro",sans-serif;font-size:11.5px;font-weight:500;
+  letter-spacing:.1em;margin-bottom:5px
+}
+.rule>.lbl{color:var(--pen)} .warn>.lbl{color:var(--red)} .tip>.lbl{color:var(--ok)}
+.rule p:last-child,.warn p:last-child,.tip p:last-child{margin-bottom:0}
+
+/* tables */
+.tw{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:340px}
+th,td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--line)}
+thead th{
+  background:var(--pen-soft);color:var(--pen);font-family:"Readex Pro",sans-serif;
+  font-weight:500;font-size:13px;white-space:nowrap
+}
+tbody tr:last-child td{border-bottom:0}
+td .m{font-size:1em}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* worked example */
+.ex{border-inline-start:3px solid var(--ink3);padding:2px 15px;margin:18px 0}
+.ex>.lbl{
+  font-family:"Readex Pro",sans-serif;font-size:11.5px;font-weight:500;
+  letter-spacing:.1em;color:var(--ink3);display:block;margin-bottom:4px
+}
+
+/* drills */
+.drill{margin-top:30px;border-top:1px dashed var(--line);padding-top:20px}
+.drill>h3{margin-top:0;display:flex;align-items:center;gap:8px}
+.drill>h3::before{
+  content:"";width:7px;height:7px;border-radius:2px;background:var(--red);flex:0 0 auto
+}
+.qs{list-style:none;padding:0;margin:0;counter-reset:q}
+.qs>li{
+  counter-increment:q;border:1px solid var(--line);border-radius:var(--r);
+  padding:14px 16px;margin-bottom:11px;background:var(--paper)
+}
+.qs>li>.q{display:flex;gap:10px;align-items:flex-start}
+.qs>li>.q::before{
+  content:counter(q);flex:0 0 auto;width:22px;height:22px;border-radius:6px;
+  background:var(--red-soft);color:var(--red);display:grid;place-items:center;
+  font-size:12px;font-weight:600;margin-top:4px;font-variant-numeric:tabular-nums
+}
+.rev{
+  font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;
+  color:var(--pen);background:none;border:1px solid var(--pen);border-radius:99px;
+  padding:3px 14px;cursor:pointer;margin-top:9px;transition:.15s
+}
+.rev:hover{background:var(--pen);color:#fff}
+.rev:focus-visible{outline:2px solid var(--pen);outline-offset:2px}
+.sol{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:15px}
+.sol p:last-child{margin-bottom:0}
+.sol .mb{background:var(--surface)}
+
+/* done checkbox */
+.done{
+  display:flex;align-items:center;gap:9px;margin-top:22px;padding:11px 14px;
+  border:1px dashed var(--line);border-radius:var(--r);cursor:pointer;
+  font-size:14.5px;color:var(--ink2);user-select:none;transition:.15s
+}
+.done:hover{border-color:var(--ok);color:var(--ok)}
+.done input{width:17px;height:17px;accent-color:var(--ok);cursor:pointer;flex:0 0 auto}
+.done.is-done{background:var(--ok-soft);border-style:solid;border-color:var(--ok);color:var(--ok);font-weight:500}
+
+/* plan */
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin:18px 0}
+.day{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;background:var(--paper)}
+.day h4{margin:0 0 8px;font-family:"Readex Pro",sans-serif;font-weight:500;color:var(--pen);font-size:14.5px}
+.day ul{margin:0;padding-inline-start:18px;font-size:14px;color:var(--ink2)}
+.day li{margin-bottom:4px}
+.verdict{
+  font-family:"Readex Pro",sans-serif;font-weight:500;font-size:clamp(17px,3.6vw,20px);
+  line-height:1.6;margin:6px 0 18px;color:var(--ink)
+}
+.verdict em{font-style:normal;color:var(--red);border-bottom:2px solid var(--red-soft);padding-bottom:1px}
+
+footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14.5px;color:var(--ink2)}
+footer h3{margin-top:0}
+@media (max-width:480px){
+  .blk{padding:20px 15px;border-radius:12px}
+  body{font-size:15.5px}
+  .mb{font-size:1.08em;padding:10px 6px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<div dir="rtl">
+
+<div class="top">
+  <div class="top-in">
+    <div class="top-row">
+      <span class="brand">تأسيس <b>كالكولاس ١</b></span>
+      <span class="pcount" id="pcount">٠ من ٨ كتل</span>
+    </div>
+    <div class="bar"><i id="barfill"></i></div>
+    <nav class="rail" id="rail">
+      <a href="#plan">الخطة</a>
+      <a href="#b1">١ الجبر</a>
+      <a href="#b2">٢ الأسس والجذور</a>
+      <a href="#b3">٣ التحليل والمتباينات</a>
+      <a href="#b4">٤ الدوال و Domain</a>
+      <a href="#b5">٥ الأسي واللوغاريتم</a>
+      <a href="#b6">٦ المثلثات</a>
+      <a href="#b7">٧ التركيب والعكسية</a>
+      <a href="#b8">٨ النهايات</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">PRECALCULUS · FOUNDATION</div>
+  <h1>من الصفر إلى بداية الكالكولاس</h1>
+  <p class="lede">كل اللي لازم تعرفه قبل ما تبلش Calculus 1، مرتّب بثماني كتل. كل كتلة فيها الشرح، أمثلة محلولة خطوة خطوة، والأخطاء اللي بتوقّع الطلاب، وتمارين مع الحل.</p>
+</header>
+
+<!-- ====================== PLAN ====================== -->
+<section class="blk" id="plan">
+  <div class="blk-head">
+    <span class="num">؟</span>
+    <div>
+      <h2>هل بتقدر تدرسهن بيوم واحد؟</h2>
+      <p class="meta">الجواب الصريح، وخطتين بديلتين</p>
+    </div>
+  </div>
+
+  <p class="verdict">بيوم واحد بتقدر <strong>تقرأهن كلهن</strong>. بس <em>ما بتقدر تتقنهن</em>.</p>
+
+  <p>الفرق بين الاثنين هو الفرق بين علامة ٥٠ وعلامة ٨٥. القراءة بتخليك تقول «آه فهمت»، وبعد ساعتين ما بتتذكر كيف تحلل <span class="m">2<i>x</i><sup>2</sup> − 5<i>x</i> − 3</span>. الإتقان بيجي من الحل بإيدك على ورقة، بدون ما تشوف الحل.</p>
+
+  <p>المحتوى اللي عندك، لو حسبناه بصدق:</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>الكتلة</th><th>الموضوع</th><th class="tnum">الوقت الحقيقي</th></tr></thead>
+      <tbody>
+        <tr><td class="tnum">١</td><td>الجبر الأساسي</td><td class="tnum">٦٠ د</td></tr>
+        <tr><td class="tnum">٢</td><td>الأسس والجذور والكسور</td><td class="tnum">٧٥ د</td></tr>
+        <tr><td class="tnum">٣</td><td>التحليل والمتباينات</td><td class="tnum">١٢٠ د</td></tr>
+        <tr><td class="tnum">٤</td><td>الدوال و Domain و Range</td><td class="tnum">١٥٠ د</td></tr>
+        <tr><td class="tnum">٥</td><td>الأسي واللوغاريتم</td><td class="tnum">٩٠ د</td></tr>
+        <tr><td class="tnum">٦</td><td>المثلثات</td><td class="tnum">١٢٠ د</td></tr>
+        <tr><td class="tnum">٧</td><td>التركيب والدالة العكسية</td><td class="tnum">٩٠ د</td></tr>
+        <tr><td class="tnum">٨</td><td>النهايات والاتصال</td><td class="tnum">٩٠ د</td></tr>
+        <tr><td colspan="2"><strong>المجموع الصافي</strong></td><td class="tnum"><strong>≈ ١٣ ساعة</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>١٣ ساعة صافي يعني ١٦ ساعة مع الاستراحات. ما في إنسان بيتعلم رياضيات ١٦ ساعة بيوم — بعد الساعة السادسة دماغك بيوقف يخزّن.</p>
+
+  <div class="plan-grid">
+    <div class="day">
+      <h4>خطة الطوارئ — يوم واحد</h4>
+      <ul>
+        <li>الكتل ٢ و ٣ و ٤ كاملة، بحل التمارين</li>
+        <li>الكتلة ٧ كاملة</li>
+        <li>الكتل ١ و ٥ و ٦ و ٨ قراءة سريعة</li>
+        <li>≈ ٨ ساعات</li>
+      </ul>
+    </div>
+    <div class="day">
+      <h4>الخطة الصح — ٣ أيام</h4>
+      <ul>
+        <li>اليوم ١: الكتل ١ و ٢ و ٣</li>
+        <li>اليوم ٢: الكتل ٤ و ٥</li>
+        <li>اليوم ٣: الكتل ٦ و ٧ و ٨</li>
+        <li>≈ ٤.٥ ساعات باليوم</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule">
+    <span class="lbl">ليش هاي الأولويات</span>
+    <p>الكتل ٣ و ٤ و ٧ هي اللي بتنحسب عليك <strong>مباشرة</strong> بالامتحان: التحليل بيدخل بكل سؤال نهايات، الـ Domain بينسألك عنه صريح، والـ Composition هو أساس Chain Rule اللي رح تاخده بعد أسبوعين. الكتلة ١ غالباً بتعرفها أصلاً، والكتلة ٦ بتقدر تعتمد على جدول تحفظه.</p>
+  </div>
+
+  <div class="tip">
+    <span class="lbl">طريقة المذاكرة</span>
+    <p>اقرأ الشرح مرة. بعدها غطّي الحل بإيدك وحاول تحل المثال لحالك. إذا حليته — كمّل. إذا لأ — ارجع اقرأ، وحل مثال ثاني. لا تنتقل لكتلة جديدة قبل ما تحل تمارينها كلها بدون نظر.</p>
+  </div>
+</section>
+
+
+<!-- ====================== BLOCK 1 ====================== -->
+<section class="blk" id="b1">
+  <div class="blk-head">
+    <span class="num">١</span>
+    <div>
+      <h2>الجبر الأساسي</h2>
+      <p class="meta">٦٠ دقيقة · الإشارات، المجهول، الأقواس، حل المعادلات</p>
+    </div>
+  </div>
+  <div class="goal">بعد هاي الكتلة: بتفك أي قوس، وبتحل أي معادلة من الدرجة الأولى، بدون ما تغلط بالإشارة.</div>
+
+  <h3>١.١ الإشارة معناها اتجاه</h3>
+  <p>تخيّل خط أفقي، الصفر بالنص. يمين الصفر موجب، يسار الصفر سالب. الرقم <span class="m">−3</span> مش «ناقص تلاتة»، هو <strong>موقع</strong>: تلاتة خطوات لليسار.</p>
+  <p>الجمع = تحرّك يمين. الطرح = تحرّك يسار.</p>
+  <div class="mb">5 − 8 &nbsp;=&nbsp; ابدأ عند 5، تحرّك 8 لليسار &nbsp;=&nbsp; −3</div>
+
+  <h4>الضرب والقسمة</h4>
+  <div class="rule">
+    <span class="lbl">القاعدة</span>
+    <p><span class="m">(+)(+) = +</span> &nbsp;·&nbsp; <span class="m">(−)(−) = +</span> &nbsp;·&nbsp; <span class="m">(+)(−) = −</span></p>
+    <p style="margin-top:8px">ليش سالب × سالب = موجب؟ لأن السالب معناه «عكس». عكس العكس = الأصل. إذا كنت بتخسر ٣ دنانير باليوم، قبل ٤ أيام <span class="m">(−3)(−4) = +12</span> كان معك ١٢ دينار أكثر.</p>
+  </div>
+
+  <h3>١.٢ شو يعني <span class="m"><i>x</i></span></h3>
+  <p><span class="m"><i>x</i></span> هو صندوق مقفول جواه رقم. شغلتنا نفتح الصندوق.</p>
+  <p>الطريقة: المعادلة ميزان. أي شي تعمله بطرف، اعمله بالطرف الثاني، وبيضل متوازن.</p>
+
+  <div class="ex">
+    <span class="lbl">مثال</span>
+    <div class="mb plain">2<i>x</i> + 3 = 11</div>
+    <p>بدنا نخلي <span class="m"><i>x</i></span> لحالها. أول شي نتخلّص من الـ <span class="m">+3</span> بطرح ٣ من الطرفين:</p>
+    <div class="mb plain">2<i>x</i> = 8</div>
+    <p>بعدين نتخلّص من الـ <span class="m">2</span> اللي مضروبة، بالقسمة على ٢:</p>
+    <div class="mb plain"><i>x</i> = 4</div>
+  </div>
+
+  <div class="tip">
+    <span class="lbl">الترتيب</span>
+    <p>تخلّص من الجمع والطرح <strong>قبل</strong> الضرب والقسمة. يعني بالعكس من ترتيب العمليات العادي — لأنك بتفك الآلة، مش بتشغّلها.</p>
+  </div>
+
+  <h3>١.٣ الأقواس = توزيع</h3>
+  <p><span class="m">2(<i>x</i> + 3)</span> معناها «٢ مضروبة بكل شي جوا القوس»:</p>
+  <div class="mb">2(<i>x</i> + 3) = 2·<i>x</i> + 2·3 = 2<i>x</i> + 6</div>
+  <p>ولما يكون قوسين، كل حد بالأول يضرب كل حد بالثاني:</p>
+  <div class="mb">(<i>x</i> + 2)(<i>x</i> + 3) = <i>x</i><sup>2</sup> + 3<i>x</i> + 2<i>x</i> + 6 = <i>x</i><sup>2</sup> + 5<i>x</i> + 6</div>
+
+  <div class="warn">
+    <span class="lbl">أكثر خطأين بيغلطهن الطلاب</span>
+    <p><strong>١.</strong> الإشارة السالبة قدام القوس بتقلب <em>كل شي</em> جواه:</p>
+    <div class="mb plain">−(<i>x</i> − 3) = −<i>x</i> + 3 &nbsp;&nbsp; <span style="color:var(--red)">مش</span> &nbsp;&nbsp; −<i>x</i> − 3</div>
+    <p><strong>٢.</strong> المربع ما بينوزّع على الجمع:</p>
+    <div class="mb plain">(<i>a</i> + <i>b</i>)<sup>2</sup> = <i>a</i><sup>2</sup> + 2<i>ab</i> + <i>b</i><sup>2</sup> &nbsp;&nbsp; <span style="color:var(--red)">مش</span> &nbsp;&nbsp; <i>a</i><sup>2</sup> + <i>b</i><sup>2</sup></div>
+    <p>جرّب بأرقام: <span class="m">(2+3)<sup>2</sup> = 25</span> بس <span class="m">2<sup>2</sup> + 3<sup>2</sup> = 13</span>. هاي طريقة ممتازة تتأكد فيها من أي قاعدة بتشك فيها — جرّبها بأرقام.</p>
+  </div>
+
+  <h3>١.٤ ثلاث صيغ لازم تعرفها غيباً</h3>
+  <div class="mb">(<i>a</i> + <i>b</i>)<sup>2</sup> = <i>a</i><sup>2</sup> + 2<i>ab</i> + <i>b</i><sup>2</sup></div>
+  <div class="mb">(<i>a</i> − <i>b</i>)<sup>2</sup> = <i>a</i><sup>2</sup> − 2<i>ab</i> + <i>b</i><sup>2</sup></div>
+  <div class="mb">(<i>a</i> − <i>b</i>)(<i>a</i> + <i>b</i>) = <i>a</i><sup>2</sup> − <i>b</i><sup>2</sup></div>
+  <p>الثالثة اسمها <strong>فرق بين مربعين</strong>، ورح تستعملها بالنهايات أكثر من أي قانون ثاني.</p>
+
+  <div class="drill">
+    <h3>تمارين الكتلة ١</h3>
+    <ol class="qs">
+      <li>
+        <div class="q"><div>بسّط: <span class="m">3(<i>x</i> − 4) − 2(<i>x</i> + 5)</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>نوزّع كل قوس لحاله. انتبه إن الـ <span class="m">−2</span> بتضرب الحدين:</p>
+          <div class="mb plain">3<i>x</i> − 12 &nbsp;−&nbsp; 2<i>x</i> − 10</div>
+          <p>نجمع المتشابهات:</p>
+          <div class="mb plain">= <i>x</i> − 22</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>حل: <span class="m">4(<i>x</i> − 1) = 2<i>x</i> + 10</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <div class="mb plain">4<i>x</i> − 4 = 2<i>x</i> + 10</div>
+          <p>ننقل الـ <span class="m">2<i>x</i></span> لليسار والـ <span class="m">−4</span> لليمين:</p>
+          <div class="mb plain">2<i>x</i> = 14 &nbsp;⟹&nbsp; <i>x</i> = 7</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>افرد: <span class="m">(2<i>x</i> − 3)(<i>x</i> + 5)</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <div class="mb plain">2<i>x</i>·<i>x</i> + 2<i>x</i>·5 − 3·<i>x</i> − 3·5</div>
+          <div class="mb plain">= 2<i>x</i><sup>2</sup> + 10<i>x</i> − 3<i>x</i> − 15 = 2<i>x</i><sup>2</sup> + 7<i>x</i> − 15</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>بسّط: <span class="m">(<i>x</i> + 3)<sup>2</sup> − (<i>x</i> − 3)<sup>2</sup></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <div class="mb plain">(<i>x</i><sup>2</sup> + 6<i>x</i> + 9) − (<i>x</i><sup>2</sup> − 6<i>x</i> + 9)</div>
+          <p>انتبه للسالب قدام القوس الثاني — بتقلب إشارات كل حدوده:</p>
+          <div class="mb plain">= <i>x</i><sup>2</sup> + 6<i>x</i> + 9 − <i>x</i><sup>2</sup> + 6<i>x</i> − 9 = 12<i>x</i></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <label class="done"><input type="checkbox" data-blk="1"> خلّصت الكتلة ١</label>
+</section>
+
+
+<!-- ====================== BLOCK 2 ====================== -->
+<section class="blk" id="b2">
+  <div class="blk-head">
+    <span class="num">٢</span>
+    <div>
+      <h2>الأسس والجذور والكسور</h2>
+      <p class="meta">٧٥ دقيقة · لغة الكالكولاس كلها مكتوبة بالأسس</p>
+    </div>
+  </div>
+  <div class="goal">بعد هاي الكتلة: بتحوّل أي جذر أو كسر إلى أُس، وهاي المهارة اللي بتخليك تشتق أي شي لاحقاً.</div>
+
+  <h3>٢.١ قوانين الأسس</h3>
+  <p><span class="m"><i>x</i><sup>3</sup></span> معناها <span class="m"><i>x</i>·<i>x</i>·<i>x</i></span>. كل القوانين تحت بتطلع من هاي الفكرة، فما في داعي تحفظهن — افهم من وين إجت.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>القانون</th><th>مثال</th><th>ليش</th></tr></thead>
+      <tbody>
+        <tr><td><span class="m"><i>x</i><sup>a</sup>·<i>x</i><sup>b</sup> = <i>x</i><sup>a+b</sup></span></td><td><span class="m"><i>x</i><sup>2</sup><i>x</i><sup>3</sup> = <i>x</i><sup>5</sup></span></td><td>(xx)(xxx) = خمس مرات</td></tr>
+        <tr><td><span class="m"><span class="fr"><span><i>x</i><sup>a</sup></span><span><i>x</i><sup>b</sup></span></span> = <i>x</i><sup>a−b</sup></span></td><td><span class="m"><span class="fr"><span><i>x</i><sup>5</sup></span><span><i>x</i><sup>2</sup></span></span> = <i>x</i><sup>3</sup></span></td><td>اختصرنا اثنين من فوق وتحت</td></tr>
+        <tr><td><span class="m">(<i>x</i><sup>a</sup>)<sup>b</sup> = <i>x</i><sup>ab</sup></span></td><td><span class="m">(<i>x</i><sup>2</sup>)<sup>3</sup> = <i>x</i><sup>6</sup></span></td><td>ثلاث مجموعات كل وحدة فيها اثنين</td></tr>
+        <tr><td><span class="m">(<i>xy</i>)<sup>a</sup> = <i>x</i><sup>a</sup><i>y</i><sup>a</sup></span></td><td><span class="m">(2<i>x</i>)<sup>3</sup> = 8<i>x</i><sup>3</sup></span></td><td>الأُس بيوزّع على الضرب</td></tr>
+        <tr><td><span class="m"><i>x</i><sup>0</sup> = 1</span></td><td><span class="m">7<sup>0</sup> = 1</span></td><td>لأن <span class="m"><i>x</i><sup>3</sup>/<i>x</i><sup>3</sup> = 1</span></td></tr>
+        <tr><td><span class="m"><i>x</i><sup>−a</sup> = <span class="fr"><span>1</span><span><i>x</i><sup>a</sup></span></span></span></td><td><span class="m"><i>x</i><sup>−2</sup> = <span class="fr"><span>1</span><span><i>x</i><sup>2</sup></span></span></span></td><td>السالب معناه «انزل للمقام»</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn">
+    <span class="lbl">الأُس ما بيوزّع على الجمع</span>
+    <p><span class="m">(<i>x</i> + <i>y</i>)<sup>2</sup> ≠ <i>x</i><sup>2</sup> + <i>y</i><sup>2</sup></span> — الأُس بيوزّع على <strong>الضرب والقسمة بس</strong>. نفس الشي بالجذر واللوغاريتم. احفظ هاي الجملة، بتوفرلك نص علاماتك.</p>
+  </div>
+
+  <h3>٢.٢ الجذور هي أسس كسرية</h3>
+  <div class="mb"><span class="sq">√<u><i>x</i></u></span> = <i>x</i><sup>1/2</sup> &nbsp;&nbsp;·&nbsp;&nbsp; <sup>3</sup><span class="sq">√<u><i>x</i></u></span> = <i>x</i><sup>1/3</sup> &nbsp;&nbsp;·&nbsp;&nbsp; <sup>3</sup><span class="sq">√<u><i>x</i><sup>2</sup></u></span> = <i>x</i><sup>2/3</sup></div>
+  <p>هاي مش تحلية — هاي ضرورة. ما بتقدر تشتق <span class="m"><span class="sq">√<u><i>x</i></u></span></span> إلا لما تكتبها <span class="m"><i>x</i><sup>1/2</sup></span>. القاعدة العامة:</p>
+  <div class="mb"><sup>n</sup><span class="sq">√<u><i>x</i><sup>m</sup></u></span> = <i>x</i><sup>m/n</sup> &nbsp;&nbsp;(المقام هو درجة الجذر)</div>
+
+  <div class="rule">
+    <span class="lbl">القاعدة اللي بتدخل بالـ Domain</span>
+    <p>بالأعداد الحقيقية، جوّا الجذر <strong>الزوجي</strong> (تربيعي، رابع…) لازم يكون <span class="m">≥ 0</span>. الجذر الفردي (تكعيبي) بيقبل السالب عادي: <span class="m"><sup>3</sup><span class="sq">√<u>−8</u></span> = −2</span>.</p>
+  </div>
+
+  <div class="warn">
+    <span class="lbl">نقطة دقيقة بيغفل عنها الكل</span>
+    <p><span class="m"><span class="sq">√<u><i>x</i><sup>2</sup></u></span> = |<i>x</i>|</span> ، مش <span class="m"><i>x</i></span>. جرّب <span class="m"><i>x</i> = −3</span>: الجذر بيعطي <span class="m">+3</span>. هاي بتيجي بالنهايات عند اللانهاية وبتوقّع الطلاب.</p>
+  </div>
+
+  <h3>٢.٣ الكسور</h3>
+  <ul>
+    <li><strong>ضرب:</strong> بسط × بسط، مقام × مقام.</li>
+    <li><strong>قسمة:</strong> اقلب الكسر الثاني واضرب.</li>
+    <li><strong>جمع:</strong> لازم مقام موحّد أولاً.</li>
+  </ul>
+  <div class="mb"><span class="fr"><span>1</span><span><i>x</i></span></span> + <span class="fr"><span>1</span><span><i>x</i>+1</span></span> = <span class="fr"><span>(<i>x</i>+1) + <i>x</i></span><span><i>x</i>(<i>x</i>+1)</span></span> = <span class="fr"><span>2<i>x</i>+1</span><span><i>x</i>(<i>x</i>+1)</span></span></div>
+
+  <div class="warn">
+    <span class="lbl">ما بيصير تختصر عبر الجمع</span>
+    <p><span class="m"><span class="fr"><span><i>x</i> + 3</span><span>3</span></span> ≠ <i>x</i></span> — ما بتقدر تشطب الـ ٣ لأنها مجموعة، مش مضروبة. الاختصار بيصير بين <strong>عوامل الضرب</strong> بس. عشان هيك التحليل مهم: بيحوّل الجمع لضرب فتقدر تختصر.</p>
+  </div>
+
+  <div class="ex">
+    <span class="lbl">مثال — هاي بالضبط شكل أسئلة النهايات</span>
+    <div class="mb plain"><span class="fr"><span><i>x</i><sup>2</sup> − 9</span><span><i>x</i> − 3</span></span></div>
+    <p>ما بنقدر نختصر هيك. بس البسط فرق بين مربعين:</p>
+    <div class="mb plain">= <span class="fr"><span>(<i>x</i> − 3)(<i>x</i> + 3)</span><span><i>x</i> − 3</span></span> = <i>x</i> + 3 &nbsp;&nbsp;(لما <i>x</i> ≠ 3)</div>
+  </div>
+
+  <div class="drill">
+    <h3>تمارين الكتلة ٢</h3>
+    <ol class="qs">
+      <li>
+        <div class="q"><div>اكتب بصيغة أُس واحد: <span class="m"><span class="fr"><span><i>x</i><sup>3</sup> · <span class="sq">√<u><i>x</i></u></span></span><span><i>x</i><sup>2</sup></span></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>نحوّل الجذر لأُس ونجمع أسس البسط:</p>
+          <div class="mb plain"><span class="fr"><span><i>x</i><sup>3</sup>·<i>x</i><sup>1/2</sup></span><span><i>x</i><sup>2</sup></span></span> = <span class="fr"><span><i>x</i><sup>7/2</sup></span><span><i>x</i><sup>2</sup></span></span> = <i>x</i><sup>7/2 − 2</sup> = <i>x</i><sup>3/2</sup></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>بسّط: <span class="m">(3<i>x</i><sup>2</sup>)<sup>3</sup> · <i>x</i><sup>−4</sup></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>الأُس بيوزّع على ٣ وعلى <span class="m"><i>x</i><sup>2</sup></span> الاثنين:</p>
+          <div class="mb plain">= 27<i>x</i><sup>6</sup> · <i>x</i><sup>−4</sup> = 27<i>x</i><sup>2</sup></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>بسّط: <span class="m"><span class="fr"><span><i>x</i><sup>2</sup> − 4</span><span><i>x</i><sup>2</sup> + 4<i>x</i> + 4</span></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>البسط فرق مربعين، والمقام مربع كامل:</p>
+          <div class="mb plain">= <span class="fr"><span>(<i>x</i> − 2)(<i>x</i> + 2)</span><span>(<i>x</i> + 2)<sup>2</sup></span></span> = <span class="fr"><span><i>x</i> − 2</span><span><i>x</i> + 2</span></span></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>اجمع: <span class="m"><span class="fr"><span>2</span><span><i>x</i> − 1</span></span> − <span class="fr"><span>1</span><span><i>x</i></span></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>المقام الموحّد هو <span class="m"><i>x</i>(<i>x</i> − 1)</span>:</p>
+          <div class="mb plain">= <span class="fr"><span>2<i>x</i> − (<i>x</i> − 1)</span><span><i>x</i>(<i>x</i> − 1)</span></span> = <span class="fr"><span><i>x</i> + 1</span><span><i>x</i>(<i>x</i> − 1)</span></span></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <label class="done"><input type="checkbox" data-blk="2"> خلّصت الكتلة ٢</label>
+</section>
+
+
+<!-- ====================== BLOCK 3 ====================== -->
+<section class="blk" id="b3">
+  <div class="blk-head">
+    <span class="num">٣</span>
+    <div>
+      <h2>التحليل والمتباينات</h2>
+      <p class="meta">١٢٠ دقيقة · أهم كتلة عملية بالملف</p>
+    </div>
+  </div>
+  <div class="goal">بعد هاي الكتلة: بتحلل أي تربيعية بثواني، وبتحل أي متباينة بجدول إشارات. هاتين المهارتين بتنحسبوا عليك بكل امتحان.</div>
+
+  <h3>٣.١ التحليل = عكس الفرد</h3>
+  <p>الفرد بياخد <span class="m">(<i>x</i>+2)(<i>x</i>+3)</span> ويعطيك <span class="m"><i>x</i><sup>2</sup>+5<i>x</i>+6</span>. التحليل بيرجّعك بالاتجاه المعاكس.</p>
+
+  <h4>أولاً: العامل المشترك — دائماً ابحث عنه قبل أي شي</h4>
+  <div class="mb">3<i>x</i><sup>2</sup> − 12<i>x</i> = 3<i>x</i>(<i>x</i> − 4)</div>
+
+  <h4>ثانياً: <span class="m"><i>x</i><sup>2</sup> + <i>bx</i> + <i>c</i></span> — دوّر على رقمين</h4>
+  <p>رقمين <strong>مجموعهم</strong> <span class="m"><i>b</i></span> و<strong>ضربهم</strong> <span class="m"><i>c</i></span>.</p>
+  <div class="ex">
+    <span class="lbl">مثال</span>
+    <p><span class="m"><i>x</i><sup>2</sup> + 3<i>x</i> − 10</span> — بدنا رقمين ضربهم <span class="m">−10</span> ومجموعهم <span class="m">3</span>.</p>
+    <p>لأن الضرب سالب، لازم واحد موجب وواحد سالب. أزواج الـ ١٠: (1,10) و (2,5). الفرق ٣ بيجي من ٥ و ٢، والأكبر لازم يكون الموجب عشان المجموع موجب. إذن <span class="m">+5</span> و <span class="m">−2</span>:</p>
+    <div class="mb plain"><i>x</i><sup>2</sup> + 3<i>x</i> − 10 = (<i>x</i> + 5)(<i>x</i> − 2)</div>
+  </div>
+
+  <h4>ثالثاً: <span class="m"><i>ax</i><sup>2</sup> + <i>bx</i> + <i>c</i></span> لما <span class="m"><i>a</i> ≠ 1</span> — طريقة التفكيك</h4>
+  <div class="ex">
+    <span class="lbl">مثال</span>
+    <p><span class="m">2<i>x</i><sup>2</sup> − 5<i>x</i> − 3</span>. اضرب <span class="m"><i>a</i>·<i>c</i> = 2·(−3) = −6</span>. بدنا رقمين ضربهم <span class="m">−6</span> ومجموعهم <span class="m">−5</span>: هم <span class="m">−6</span> و <span class="m">+1</span>. نفكك الحد الأوسط:</p>
+    <div class="mb plain">2<i>x</i><sup>2</sup> − 6<i>x</i> + <i>x</i> − 3</div>
+    <p>نجمّع كل حدين ونطلع عامل مشترك:</p>
+    <div class="mb plain">2<i>x</i>(<i>x</i> − 3) + 1(<i>x</i> − 3) = (<i>x</i> − 3)(2<i>x</i> + 1)</div>
+  </div>
+
+  <h4>رابعاً: الصيغ الجاهزة</h4>
+  <div class="tw">
+    <table>
+      <thead><tr><th>الاسم</th><th>الصيغة</th><th>مثال</th></tr></thead>
+      <tbody>
+        <tr><td>فرق مربعين</td><td><span class="m"><i>a</i><sup>2</sup> − <i>b</i><sup>2</sup> = (<i>a</i>−<i>b</i>)(<i>a</i>+<i>b</i>)</span></td><td><span class="m"><i>x</i><sup>2</sup>−9 = (<i>x</i>−3)(<i>x</i>+3)</span></td></tr>
+        <tr><td>مربع كامل</td><td><span class="m"><i>a</i><sup>2</sup> ± 2<i>ab</i> + <i>b</i><sup>2</sup> = (<i>a</i>±<i>b</i>)<sup>2</sup></span></td><td><span class="m"><i>x</i><sup>2</sup>+6<i>x</i>+9 = (<i>x</i>+3)<sup>2</sup></span></td></tr>
+        <tr><td>فرق مكعبين</td><td><span class="m"><i>a</i><sup>3</sup>−<i>b</i><sup>3</sup> = (<i>a</i>−<i>b</i>)(<i>a</i><sup>2</sup>+<i>ab</i>+<i>b</i><sup>2</sup>)</span></td><td><span class="m"><i>x</i><sup>3</sup>−8 = (<i>x</i>−2)(<i>x</i><sup>2</sup>+2<i>x</i>+4)</span></td></tr>
+        <tr><td>مجموع مكعبين</td><td><span class="m"><i>a</i><sup>3</sup>+<i>b</i><sup>3</sup> = (<i>a</i>+<i>b</i>)(<i>a</i><sup>2</sup>−<i>ab</i>+<i>b</i><sup>2</sup>)</span></td><td><span class="m"><i>x</i><sup>3</sup>+1 = (<i>x</i>+1)(<i>x</i><sup>2</sup>−<i>x</i>+1)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="meta" style="margin-top:-6px">ملاحظة: <span class="m"><i>a</i><sup>2</sup> + <i>b</i><sup>2</sup></span> ما بينحلل بالأعداد الحقيقية.</p>
+
+  <h3>٣.٢ القانون العام والمميّز</h3>
+  <p>إذا ما لقيت التحليل بسرعة، استخدم القانون. لـ <span class="m"><i>ax</i><sup>2</sup>+<i>bx</i>+<i>c</i> = 0</span>:</p>
+  <div class="mb"><i>x</i> = <span class="fr"><span>−<i>b</i> ± <span class="sq">√<u><i>b</i><sup>2</sup> − 4<i>ac</i></u></span></span><span>2<i>a</i></span></span></div>
+  <p>الجزء اللي تحت الجذر <span class="m"><i>b</i><sup>2</sup> − 4<i>ac</i></span> اسمه <strong>المميّز (Discriminant)</strong> وبيخبّرك عدد الحلول قبل ما تحل:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>المميّز</th><th>الحلول</th><th>شكل المنحنى</th></tr></thead>
+      <tbody>
+        <tr><td><span class="m">&gt; 0</span></td><td>حلّين حقيقيين مختلفين</td><td>بيقطع محور <span class="m"><i>x</i></span> بنقطتين</td></tr>
+        <tr><td><span class="m">= 0</span></td><td>حل واحد مكرر</td><td>بيلمس المحور بنقطة</td></tr>
+        <tr><td><span class="m">&lt; 0</span></td><td>لا حلول حقيقية</td><td>ما بيلمس المحور أبداً</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tip">
+    <span class="lbl">استخدام عملي</span>
+    <p>إذا مميّز المقام سالب، معناها المقام ما بيصير صفر أبداً، يعني الـ Domain كل الأعداد الحقيقية. بتوفر عليك شغل كثير.</p>
+  </div>
+
+  <h3>٣.٣ المتباينات وجدول الإشارات</h3>
+  <p>المتباينة مثل المعادلة بقاعدة واحدة زيادة:</p>
+  <div class="warn">
+    <span class="lbl">القاعدة الوحيدة اللي بتختلف</span>
+    <p>إذا ضربت أو قسمت الطرفين بعدد <strong>سالب</strong>، اقلب اتجاه الإشارة.</p>
+    <div class="mb plain">−2<i>x</i> &gt; 6 &nbsp;⟹&nbsp; <i>x</i> &lt; −3</div>
+  </div>
+
+  <p>أما المتباينة التربيعية فما بتنحل بالنقل. بتنحل <strong>بجدول إشارات</strong>، وهاي الطريقة رح تستعملها كل مرة بدك Domain للوغاريتم أو لجذر.</p>
+
+  <div class="ex">
+    <span class="lbl">الطريقة كاملة — حل <span class="m"><i>x</i><sup>2</sup> + 3<i>x</i> − 10 &gt; 0</span></span>
+    <p><strong>خطوة ١:</strong> خلّي الطرف الأيمن صفر (هون جاهز)، وحلّل:</p>
+    <div class="mb plain">(<i>x</i> + 5)(<i>x</i> − 2) &gt; 0</div>
+    <p><strong>خطوة ٢:</strong> جيب الجذور — القيم اللي بتصفّر كل عامل: <span class="m"><i>x</i> = −5</span> و <span class="m"><i>x</i> = 2</span>. هاي بتقسم خط الأعداد لثلاث مناطق.</p>
+    <p><strong>خطوة ٣:</strong> اختبر رقم واحد من كل منطقة:</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>المنطقة</th><th>جرّب</th><th><span class="m">(<i>x</i>+5)</span></th><th><span class="m">(<i>x</i>−2)</span></th><th>الناتج</th></tr></thead>
+        <tbody>
+          <tr><td><span class="m"><i>x</i> &lt; −5</span></td><td><span class="m">−6</span></td><td>−</td><td>−</td><td style="color:var(--ok);font-weight:600">+</td></tr>
+          <tr><td><span class="m">−5 &lt; <i>x</i> &lt; 2</span></td><td><span class="m">0</span></td><td>+</td><td>−</td><td style="color:var(--red);font-weight:600">−</td></tr>
+          <tr><td><span class="m"><i>x</i> &gt; 2</span></td><td><span class="m">3</span></td><td>+</td><td>+</td><td style="color:var(--ok);font-weight:600">+</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>خطوة ٤:</strong> بدنا موجب، فناخد المنطقتين اللي فيهن <span class="m">+</span>:</p>
+    <div class="mb plain">(−∞, −5) ∪ (2, ∞)</div>
+  </div>
+
+  <div class="rule">
+    <span class="lbl">الأقواس</span>
+    <p>قوس مدوّر <span class="m">(</span> يعني الطرف <strong>غير</strong> مشمول. قوس مربع <span class="m">[</span> يعني مشمول. عند <span class="m">∞</span> و <span class="m">−∞</span> دائماً قوس مدوّر — اللانهاية مش رقم فما بتنشمل.</p>
+    <p style="margin-top:8px">مع <span class="m">&gt;</span> أو <span class="m">&lt;</span> استعمل مدوّر، ومع <span class="m">≥</span> أو <span class="m">≤</span> استعمل مربع. الرمز <span class="m">∪</span> معناه «اتحاد» — يعني أو.</p>
+  </div>
+
+  <div class="warn">
+    <span class="lbl">متباينة فيها كسر — لا تضرب بالمقام</span>
+    <p><span class="m"><span class="fr"><span><i>x</i>−1</span><span><i>x</i>+2</span></span> ≥ 0</span> — ممنوع تضرب الطرفين بـ <span class="m">(<i>x</i>+2)</span>، لأنك ما بتعرف إشارته فما بتعرف تقلب الإشارة ولا لأ. استعمل جدول الإشارات على البسط والمقام سوا. والمقام دائماً <strong>غير</strong> مشمول حتى لو الإشارة <span class="m">≥</span>.</p>
+  </div>
+
+  <div class="drill">
+    <h3>تمارين الكتلة ٣</h3>
+    <ol class="qs">
+      <li>
+        <div class="q"><div>حلّل: <span class="m">3<i>x</i><sup>2</sup> − 27</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>عامل مشترك ٣ أولاً، وبعدين فرق مربعين:</p>
+          <div class="mb plain">3(<i>x</i><sup>2</sup> − 9) = 3(<i>x</i> − 3)(<i>x</i> + 3)</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>حلّل: <span class="m">6<i>x</i><sup>2</sup> + <i>x</i> − 2</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p><span class="m"><i>a</i>·<i>c</i> = −12</span>، بدنا رقمين ضربهم <span class="m">−12</span> ومجموعهم <span class="m">1</span>: هم <span class="m">4</span> و <span class="m">−3</span>.</p>
+          <div class="mb plain">6<i>x</i><sup>2</sup> + 4<i>x</i> − 3<i>x</i> − 2</div>
+          <div class="mb plain">2<i>x</i>(3<i>x</i> + 2) − 1(3<i>x</i> + 2) = (3<i>x</i> + 2)(2<i>x</i> − 1)</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>حل: <span class="m"><i>x</i><sup>2</sup> − <i>x</i> − 6 ≤ 0</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <div class="mb plain">(<i>x</i> − 3)(<i>x</i> + 2) ≤ 0</div>
+          <p>الجذور <span class="m">−2</span> و <span class="m">3</span>. نجرب: عند <span class="m"><i>x</i>=−3</span> الناتج موجب، عند <span class="m"><i>x</i>=0</span> سالب، عند <span class="m"><i>x</i>=4</span> موجب. بدنا سالب أو صفر، والصفر مسموح فالطرفين مشمولين:</p>
+          <div class="mb plain">[−2, 3]</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>حل: <span class="m"><span class="fr"><span><i>x</i> − 1</span><span><i>x</i> + 2</span></span> ≥ 0</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>النقاط الحرجة: البسط يصفّر عند <span class="m"><i>x</i>=1</span>، المقام عند <span class="m"><i>x</i>=−2</span>.</p>
+          <div class="tw">
+            <table>
+              <thead><tr><th>المنطقة</th><th>جرّب</th><th>الناتج</th></tr></thead>
+              <tbody>
+                <tr><td><span class="m"><i>x</i> &lt; −2</span></td><td><span class="m">−3</span></td><td><span class="m">(−4)/(−1) = +</span></td></tr>
+                <tr><td><span class="m">−2 &lt; <i>x</i> &lt; 1</span></td><td><span class="m">0</span></td><td><span class="m">(−1)/(2) = −</span></td></tr>
+                <tr><td><span class="m"><i>x</i> &gt; 1</span></td><td><span class="m">2</span></td><td><span class="m">(1)/(4) = +</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>بدنا موجب أو صفر. <span class="m"><i>x</i>=1</span> مسموح (بيعطي صفر)، بس <span class="m"><i>x</i>=−2</span> ممنوع نهائياً:</p>
+          <div class="mb plain">(−∞, −2) ∪ [1, ∞)</div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <label class="done"><input type="checkbox" data-blk="3"> خلّصت الكتلة ٣</label>
+</section>
+
+
+<!-- ====================== BLOCK 4 ====================== -->
+<section class="blk" id="b4">
+  <div class="blk-head">
+    <span class="num">٤</span>
+    <div>
+      <h2>الدوال و Domain و Range</h2>
+      <p class="meta">١٥٠ دقيقة · قلب المحاضرة الأولى</p>
+    </div>
+  </div>
+  <div class="goal">بعد هاي الكتلة: بتطلّع Domain لأي دالة معطاة لك، مهما كانت مركّبة.</div>
+
+  <h3>٤.١ الدالة آلة</h3>
+  <p>تحط رقم جوا، بيطلع رقم برا. <span class="m"><i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup></span> يعني «الآلة بتربّع اللي بتعطيها».</p>
+  <div class="warn">
+    <span class="lbl">أول سوء فهم</span>
+    <p><span class="m"><i>f</i>(<i>x</i>)</span> <strong>ما معناها</strong> <span class="m"><i>f</i> × <i>x</i></span>. هاي اسم الآلة وبين قوسين اللي دخّلته فيها.</p>
+  </div>
+  <p>ولما تشوف <span class="m"><i>f</i>(<i>a</i>+<i>h</i>)</span>، معناها حط <span class="m"><i>a</i>+<i>h</i></span> بدل <strong>كل</strong> <span class="m"><i>x</i></span>:</p>
+  <div class="mb"><i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> + 1 &nbsp;⟹&nbsp; <i>f</i>(<i>a</i>+<i>h</i>) = (<i>a</i>+<i>h</i>)<sup>2</sup> + 1</div>
+  <p>هاي بالضبط شكل تعريف المشتقة اللي رح تشوفه بعد شوي، فتعوّد عليها من هلأ.</p>
+
+  <h3>٤.٢ إمتى العلاقة تكون دالة</h3>
+  <p>شرط واحد: <strong>كل input بيعطي output واحد بالضبط</strong>. عادي اثنين inputs يعطوا نفس النتيجة. مش عادي input واحد يعطي نتيجتين.</p>
+  <p><strong>Vertical Line Test:</strong> ارسم خط عمودي. إذا قطع المنحنى بأكثر من نقطة، مش دالة. مثلاً <span class="m"><i>y</i><sup>2</sup> = <i>x</i></span> بيفتح لليمين، والخط العمودي بيقطعه بنقطتين — فمش دالة.</p>
+
+  <h3>٤.٣ الـ Domain — ثلاث قواعد فقط</h3>
+  <div class="rule">
+    <span class="lbl">القواعد الثلاث</span>
+    <p><strong>١.</strong> المقام ≠ صفر</p>
+    <p><strong>٢.</strong> جوّا الجذر الزوجي ≥ صفر</p>
+    <p><strong>٣.</strong> جوّا اللوغاريتم &gt; صفر (صفر ممنوع)</p>
+    <p style="margin-top:8px">إذا ما في ولا وحدة من هاي بالدالة — يعني كثيرة حدود مثلاً — فالـ Domain هو <span class="m">ℝ</span>، كل الأعداد الحقيقية.</p>
+  </div>
+
+  <div class="ex">
+    <span class="lbl">مثال بقاعدة وحدة</span>
+    <p><span class="m"><i>f</i>(<i>x</i>) = <span class="fr"><span>1</span><span><i>x</i> − 1</span></span></span> → لازم <span class="m"><i>x</i> − 1 ≠ 0</span> → <span class="m"><i>x</i> ≠ 1</span></p>
+    <div class="mb plain">Domain = ℝ − {1} = (−∞,1) ∪ (1,∞)</div>
+  </div>
+
+  <div class="ex">
+    <span class="lbl">مثال بجذر</span>
+    <p><span class="m"><i>f</i>(<i>x</i>) = <span class="sq">√<u>1 − <i>x</i></u></span></span> → لازم <span class="m">1 − <i>x</i> ≥ 0</span> → <span class="m"><i>x</i> ≤ 1</span></p>
+    <div class="mb plain">Domain = (−∞, 1]</div>
+    <p>القوس مربع عند ١ لأن <span class="m"><i>x</i>=1</span> مسموحة (بتعطي جذر صفر، وهذا مقبول).</p>
+  </div>
+
+  <div class="ex">
+    <span class="lbl">مثال بقاعدتين معاً — الجذر بالمقام</span>
+    <p><span class="m"><i>f</i>(<i>x</i>) = <span class="fr"><span>1</span><span><span class="sq">√<u>1 − <i>x</i></u></span></span></span></span></p>
+    <p>الجذر بده <span class="m">1−<i>x</i> ≥ 0</span>، والمقام بده <span class="m"><span class="sq">√<u>1−<i>x</i></u></span> ≠ 0</span> يعني <span class="m">1−<i>x</i> ≠ 0</span>. الشرطين معاً بيعطوا:</p>
+    <div class="mb plain">1 − <i>x</i> &gt; 0 &nbsp;⟹&nbsp; <i>x</i> &lt; 1 &nbsp;⟹&nbsp; (−∞, 1)</div>
+    <div class="tip" style="margin-top:12px">
+      <span class="lbl">القاعدة المختصرة</span>
+      <p>جذر بالبسط ← <span class="m">≥ 0</span>. جذر بالمقام ← <span class="m">&gt; 0</span>. هاي بتيجي بالامتحان كثير.</p>
+    </div>
+  </div>
+
+  <div class="ex">
+    <span class="lbl">مثال مركّب — أكثر من شرط</span>
+    <p><span class="m"><i>f</i>(<i>x</i>) = <span class="fr"><span><span class="sq">√<u><i>x</i> + 4</u></span></span><span><i>x</i> − 1</span></span></span></p>
+    <p>شرط ١: <span class="m"><i>x</i> + 4 ≥ 0</span> ⟹ <span class="m"><i>x</i> ≥ −4</span></p>
+    <p>شرط ٢: <span class="m"><i>x</i> − 1 ≠ 0</span> ⟹ <span class="m"><i>x</i> ≠ 1</span></p>
+    <p>ناخد <strong>التقاطع</strong> — يعني اللي بيحقق الشرطين سوا:</p>
+    <div class="mb plain">[−4, 1) ∪ (1, ∞)</div>
+  </div>
+
+  <h3>٤.٤ الـ Range</h3>
+  <p>الـ Range هو القيم اللي <strong>بتطلع</strong> فعلياً من الدالة. أصعب شوي من الـ Domain لأن ما في قواعد ميكانيكية — لازم تفكّر بالسلوك.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>الدالة</th><th>Range</th><th>السبب</th></tr></thead>
+      <tbody>
+        <tr><td><span class="m"><i>x</i><sup>2</sup></span></td><td><span class="m">[0, ∞)</span></td><td>المربع ما بيطلع سالب</td></tr>
+        <tr><td><span class="m"><i>x</i><sup>3</sup></span></td><td><span class="m">ℝ</span></td><td>المكعب بياخد كل القيم</td></tr>
+        <tr><td><span class="m"><span class="sq">√<u><i>x</i></u></span></span></td><td><span class="m">[0, ∞)</span></td><td>الجذر الموجب فقط</td></tr>
+        <tr><td><span class="m">|<i>x</i>|</span></td><td><span class="m">[0, ∞)</span></td><td>المسافة ما بتكون سالبة</td></tr>
+        <tr><td><span class="m">1/<i>x</i></span></td><td><span class="m">ℝ − {0}</span></td><td>ما في قيمة بتعطي صفر</td></tr>
+        <tr><td><span class="m"><i>x</i><sup>2</sup> + 3</span></td><td><span class="m">[3, ∞)</span></td><td>أقل قيمة للمربع صفر، +3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>٤.٥ القيمة المطلقة</h3>
+  <p><span class="m">|<i>x</i>|</span> هي المسافة عن الصفر، فدائماً غير سالبة. تعريفها الرسمي:</p>
+  <div class="mb">|<i>x</i>| = <i>x</i> إذا <i>x</i> ≥ 0 &nbsp;&nbsp;،&nbsp;&nbsp; |<i>x</i>| = −<i>x</i> إذا <i>x</i> &lt; 0</div>
+  <p>الـ <span class="m">−<i>x</i></span> هون مش «سالب» — هو قلب السالب لموجب. إذا <span class="m"><i>x</i> = −5</span> فإن <span class="m">−<i>x</i> = 5</span>.</p>
+
+  <h3>٤.٦ Even و Odd</h3>
+  <div class="rule">
+    <span class="lbl">الاختبار</span>
+    <p>عوّض <span class="m">−<i>x</i></span> مكان <span class="m"><i>x</i></span> وشوف شو طلع:</p>
+    <p><strong>Even</strong> إذا <span class="m"><i>f</i>(−<i>x</i>) = <i>f</i>(<i>x</i>)</span> — متناظرة حول محور <span class="m"><i>y</i></span> (مرآة)</p>
+    <p><strong>Odd</strong> إذا <span class="m"><i>f</i>(−<i>x</i>) = −<i>f</i>(<i>x</i>)</span> — متناظرة حول نقطة الأصل (دوران ١٨٠°)</p>
+    <p style="margin-top:8px">وممكن تكون <strong>ولا وحدة</strong>، مثل <span class="m"><i>x</i><sup>2</sup> + <i>x</i></span>.</p>
+  </div>
+  <div class="tip">
+    <span class="lbl">اختصار</span>
+    <p>لكثيرات الحدود: كل الأسس زوجية ← Even. كل الأسس فردية ← Odd. مخلوطة ← ولا وحدة. (الثابت أُسّه صفر، وهو زوجي.)</p>
+  </div>
+
+  <h3>٤.٧ الدوال المتشعّبة (Piecewise)</h3>
+  <p>قانونين أو أكثر، كل واحد شغّال على منطقة. المهم تقرأ الشرط صح:</p>
+  <div class="mb"><i>f</i>(<i>x</i>) = <i>x</i> − 1 لما <i>x</i> &gt; 2 &nbsp;،&nbsp; <i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> لما <i>x</i> ≤ 2</div>
+  <p><span class="m"><i>f</i>(3) = 3 − 1 = 2</span> لأن ٣ أكبر من ٢. بس <span class="m"><i>f</i>(2) = 2<sup>2</sup> = 4</span> لأن الشرط الثاني فيه <span class="m">≤</span> فبيشمل ٢.</p>
+  <div class="warn">
+    <span class="lbl">انتبه</span>
+    <p>عند نقطة الانتقال (هون <span class="m"><i>x</i>=2</span>)، ركّز مين فيها <span class="m">≤</span> أو <span class="m">&lt;</span>. هاي النقطة بالذات هي اللي بينسألك عنها بالاتصال لاحقاً.</p>
+  </div>
+
+  <div class="drill">
+    <h3>تمارين الكتلة ٤</h3>
+    <ol class="qs">
+      <li>
+        <div class="q"><div>جيب Domain لـ <span class="m"><i>f</i>(<i>x</i>) = <span class="fr"><span><i>x</i> + 1</span><span><i>x</i><sup>2</sup> − 4</span></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>المقام ≠ صفر: <span class="m"><i>x</i><sup>2</sup> − 4 = (<i>x</i>−2)(<i>x</i>+2) ≠ 0</span></p>
+          <div class="mb plain"><i>x</i> ≠ 2 &nbsp;و&nbsp; <i>x</i> ≠ −2</div>
+          <div class="mb plain">(−∞,−2) ∪ (−2,2) ∪ (2,∞)</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>جيب Domain لـ <span class="m"><i>f</i>(<i>x</i>) = <span class="sq">√<u><i>x</i><sup>2</sup> − 9</u></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>لازم <span class="m"><i>x</i><sup>2</sup> − 9 ≥ 0</span>، يعني <span class="m">(<i>x</i>−3)(<i>x</i>+3) ≥ 0</span>. جدول إشارات بجذور <span class="m">−3</span> و <span class="m">3</span>:</p>
+          <p>عند <span class="m">−4</span> موجب، عند <span class="m">0</span> سالب، عند <span class="m">4</span> موجب. بدنا موجب أو صفر:</p>
+          <div class="mb plain">(−∞, −3] ∪ [3, ∞)</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>جيب Domain لـ <span class="m"><i>f</i>(<i>x</i>) = <span class="fr"><span><span class="sq">√<u>3 − <i>x</i></u></span></span><span><i>x</i> + 2</span></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>شرطين: <span class="m">3 − <i>x</i> ≥ 0</span> ⟹ <span class="m"><i>x</i> ≤ 3</span>، و <span class="m"><i>x</i> ≠ −2</span>.</p>
+          <p>التقاطع: كل شي أصغر أو يساوي ٣ ما عدا <span class="m">−2</span>:</p>
+          <div class="mb plain">(−∞, −2) ∪ (−2, 3]</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>حدّد Even أو Odd أو ولا وحدة: &nbsp;(أ) <span class="m"><i>x</i><sup>4</sup> − 2<i>x</i><sup>2</sup></span> &nbsp;(ب) <span class="m"><i>x</i><sup>3</sup> + <i>x</i></span> &nbsp;(ج) <span class="m"><i>x</i><sup>2</sup> + <i>x</i></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p><strong>(أ)</strong> <span class="m"><i>f</i>(−<i>x</i>) = <i>x</i><sup>4</sup> − 2<i>x</i><sup>2</sup> = <i>f</i>(<i>x</i>)</span> → Even (كل الأسس زوجية)</p>
+          <p><strong>(ب)</strong> <span class="m"><i>f</i>(−<i>x</i>) = −<i>x</i><sup>3</sup> − <i>x</i> = −<i>f</i>(<i>x</i>)</span> → Odd (كل الأسس فردية)</p>
+          <p><strong>(ج)</strong> <span class="m"><i>f</i>(−<i>x</i>) = <i>x</i><sup>2</sup> − <i>x</i></span> — لا تساوي <span class="m"><i>f</i>(<i>x</i>)</span> ولا <span class="m">−<i>f</i>(<i>x</i>)</span> → ولا وحدة</p>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>إذا <span class="m"><i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> − 3<i>x</i></span>، جيب <span class="m"><i>f</i>(<i>x</i> + <i>h</i>)</span> مفرودة.</div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>عوّض <span class="m"><i>x</i> + <i>h</i></span> مكان كل <span class="m"><i>x</i></span>:</p>
+          <div class="mb plain">(<i>x</i> + <i>h</i>)<sup>2</sup> − 3(<i>x</i> + <i>h</i>)</div>
+          <div class="mb plain">= <i>x</i><sup>2</sup> + 2<i>xh</i> + <i>h</i><sup>2</sup> − 3<i>x</i> − 3<i>h</i></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <label class="done"><input type="checkbox" data-blk="4"> خلّصت الكتلة ٤</label>
+</section>
+
+
+<!-- ====================== BLOCK 5 ====================== -->
+<section class="blk" id="b5">
+  <div class="blk-head">
+    <span class="num">٥</span>
+    <div>
+      <h2>الدالة الأسية واللوغاريتم</h2>
+      <p class="meta">٩٠ دقيقة · اللوغاريتم هو عكس الأُس، لا أكثر</p>
+    </div>
+  </div>
+  <div class="goal">بعد هاي الكتلة: بتحوّل بين صيغة الأُس وصيغة الـ log بثانية، وبتحل أي معادلة فيها <span class="m"><i>e</i></span> أو <span class="m">ln</span>.</div>
+
+  <h3>٥.١ الدالة الأسية</h3>
+  <p>شكلها <span class="m"><i>f</i>(<i>x</i>) = <i>b</i><sup><i>x</i></sup></span> بحيث <span class="m"><i>b</i> &gt; 0</span> و <span class="m"><i>b</i> ≠ 1</span>. المتغير <strong>فوق</strong>، مش تحت — هاي اللي بتفرقها عن <span class="m"><i>x</i><sup>2</sup></span>.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th></th><th><span class="m"><i>b</i> &gt; 1</span> مثل <span class="m">2<sup><i>x</i></sup></span></th><th><span class="m">0 &lt; <i>b</i> &lt; 1</span> مثل <span class="m">(1/2)<sup><i>x</i></sup></span></th></tr></thead>
+      <tbody>
+        <tr><td>السلوك</td><td>متزايدة (نمو)</td><td>متناقصة (اضمحلال)</td></tr>
+        <tr><td>Domain</td><td><span class="m">ℝ</span></td><td><span class="m">ℝ</span></td></tr>
+        <tr><td>Range</td><td><span class="m">(0, ∞)</span></td><td><span class="m">(0, ∞)</span></td></tr>
+        <tr><td>بتمر بـ</td><td><span class="m">(0, 1)</span></td><td><span class="m">(0, 1)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="rule">
+    <span class="lbl">أهم حقيقة</span>
+    <p>الـ Range هو <span class="m">(0, ∞)</span> — الدالة الأسية <strong>ما بتعطي صفر ولا سالب أبداً</strong>. عشان هيك <span class="m"><i>e</i><sup><i>x</i></sup> = 0</span> ما إلها حل، وعشان هيك <span class="m">ln</span> ما بيقبل صفر ولا سالب.</p>
+  </div>
+  <p>والعدد <span class="m"><i>e</i> ≈ 2.71828</span> هو ثابت مثل <span class="m">π</span>. سبب أهميته بالكالكولاس: <span class="m"><i>e</i><sup><i>x</i></sup></span> هي الدالة الوحيدة اللي مشتقتها نفسها.</p>
+
+  <h3>٥.٢ اللوغاريتم</h3>
+  <div class="rule">
+    <span class="lbl">التعريف — احفظ هاي السطر</span>
+    <div class="mb plain">log<sub><i>b</i></sub>(<i>y</i>) = <i>x</i> &nbsp;⟺&nbsp; <i>b</i><sup><i>x</i></sup> = <i>y</i></div>
+    <p>اللوغاريتم بيسأل سؤال واحد: <strong>«الأساس أرفعه لأي قوة يعطيني هذا الرقم؟»</strong></p>
+  </div>
+  <p><span class="m">log<sub>2</sub>(8) = 3</span> لأن <span class="m">2<sup>3</sup> = 8</span>. بس هيك.</p>
+  <ul>
+    <li><span class="m">log <i>x</i></span> بدون أساس ← الأساس ١٠</li>
+    <li><span class="m">ln <i>x</i></span> ← الأساس <span class="m"><i>e</i></span>، واسمه اللوغاريتم الطبيعي</li>
+  </ul>
+
+  <h4>قوانين اللوغاريتم</h4>
+  <div class="tw">
+    <table>
+      <thead><tr><th>القانون</th><th>مثال</th></tr></thead>
+      <tbody>
+        <tr><td><span class="m">ln(<i>ab</i>) = ln <i>a</i> + ln <i>b</i></span></td><td>الضرب صار جمع</td></tr>
+        <tr><td><span class="m">ln(<i>a</i>/<i>b</i>) = ln <i>a</i> − ln <i>b</i></span></td><td>القسمة صارت طرح</td></tr>
+        <tr><td><span class="m">ln(<i>a</i><sup><i>n</i></sup>) = <i>n</i> ln <i>a</i></span></td><td>الأُس نزل قدام</td></tr>
+        <tr><td><span class="m">ln(1) = 0</span></td><td>لأن <span class="m"><i>e</i><sup>0</sup> = 1</span></td></tr>
+        <tr><td><span class="m">ln(<i>e</i>) = 1</span></td><td>لأن <span class="m"><i>e</i><sup>1</sup> = <i>e</i></span></td></tr>
+        <tr><td><span class="m">ln(<i>e</i><sup><i>x</i></sup>) = <i>x</i></span> و <span class="m"><i>e</i><sup>ln <i>x</i></sup> = <i>x</i></span></td><td>كل وحدة بتلغي الثانية</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn">
+    <span class="lbl">أخطر خطأ باللوغاريتمات</span>
+    <p><span class="m">ln(<i>a</i> + <i>b</i>) ≠ ln <i>a</i> + ln <i>b</i></span></p>
+    <p>ما في قانون للوغاريتم مجموع. اللوغاريتم بيفكك <strong>الضرب والقسمة والأُس</strong> فقط — نفس قصة الجذر والأُس.</p>
+  </div>
+
+  <h3>٥.٣ Domain اللوغاريتم</h3>
+  <p>جوّا الـ log لازم يكون <strong>أكبر من صفر تماماً</strong>. هون بتستعمل جدول الإشارات من الكتلة ٣.</p>
+
+  <div class="ex">
+    <span class="lbl">مثال الدكتور</span>
+    <p><span class="m"><i>g</i>(<i>x</i>) = ln(<i>x</i><sup>2</sup> + 3<i>x</i> − 10)</span></p>
+    <p>نشترط <span class="m"><i>x</i><sup>2</sup> + 3<i>x</i> − 10 &gt; 0</span>، نحلل:</p>
+    <div class="mb plain">(<i>x</i> + 5)(<i>x</i> − 2) &gt; 0</div>
+    <p>جدول إشارات بجذور <span class="m">−5</span> و <span class="m">2</span> — موجب بالطرفين، سالب بالنص:</p>
+    <div class="mb plain">Domain = (−∞, −5) ∪ (2, ∞)</div>
+    <p>لاحظ إن الأقواس كلها مدوّرة، لأن الشرط <span class="m">&gt;</span> مش <span class="m">≥</span>.</p>
+  </div>
+
+  <h3>٥.٤ حل المعادلات الأسية واللوغاريتمية</h3>
+  <p>القاعدة: لو المجهول <strong>فوق</strong> (بالأُس)، خُذ <span class="m">ln</span> للطرفين. لو المجهول <strong>جوّا</strong> الـ log، ارفع <span class="m"><i>e</i></span> للطرفين.</p>
+  <div class="ex">
+    <span class="lbl">مثالين</span>
+    <div class="mb plain"><i>e</i><sup>2<i>x</i></sup> = 7 &nbsp;⟹&nbsp; 2<i>x</i> = ln 7 &nbsp;⟹&nbsp; <i>x</i> = <span class="fr"><span>ln 7</span><span>2</span></span></div>
+    <div class="mb plain">ln(<i>x</i> − 1) = 3 &nbsp;⟹&nbsp; <i>x</i> − 1 = <i>e</i><sup>3</sup> &nbsp;⟹&nbsp; <i>x</i> = <i>e</i><sup>3</sup> + 1</div>
+  </div>
+
+  <div class="drill">
+    <h3>تمارين الكتلة ٥</h3>
+    <ol class="qs">
+      <li>
+        <div class="q"><div>احسب بدون آلة: <span class="m">ln(<i>e</i><sup>5</sup>) + log<sub>10</sub>(0.001) + log<sub>3</sub>(81)</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p><span class="m">ln(<i>e</i><sup>5</sup>) = 5</span></p>
+          <p><span class="m">0.001 = 10<sup>−3</sup></span> فـ <span class="m">log<sub>10</sub>(0.001) = −3</span></p>
+          <p><span class="m">3<sup>4</sup> = 81</span> فـ <span class="m">log<sub>3</sub>(81) = 4</span></p>
+          <div class="mb plain">5 − 3 + 4 = 6</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>جيب Domain لـ <span class="m"><i>f</i>(<i>x</i>) = ln(4 − <i>x</i><sup>2</sup>)</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <div class="mb plain">4 − <i>x</i><sup>2</sup> &gt; 0 &nbsp;⟹&nbsp; (2 − <i>x</i>)(2 + <i>x</i>) &gt; 0</div>
+          <p>الجذور <span class="m">−2</span> و <span class="m">2</span>. جرّب <span class="m"><i>x</i>=0</span>: <span class="m">4 &gt; 0</span> ✓. جرّب <span class="m"><i>x</i>=3</span>: <span class="m">−5 &lt; 0</span> ✗. فالمنطقة الوسطى فقط:</p>
+          <div class="mb plain">(−2, 2)</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>حل: <span class="m">3<i>e</i><sup><i>x</i>+1</sup> = 12</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>اقسم على ٣ أولاً — لا تاخد <span class="m">ln</span> والـ ٣ لسا موجودة:</p>
+          <div class="mb plain"><i>e</i><sup><i>x</i>+1</sup> = 4 &nbsp;⟹&nbsp; <i>x</i> + 1 = ln 4 &nbsp;⟹&nbsp; <i>x</i> = ln 4 − 1</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>بسّط لعبارة log واحدة: <span class="m">2 ln <i>x</i> − ln(<i>x</i> + 1)</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>الـ ٢ بتطلع أُس، والطرح بيصير قسمة:</p>
+          <div class="mb plain">ln(<i>x</i><sup>2</sup>) − ln(<i>x</i>+1) = ln<span class="fr"><span><i>x</i><sup>2</sup></span><span><i>x</i>+1</span></span></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <label class="done"><input type="checkbox" data-blk="5"> خلّصت الكتلة ٥</label>
+</section>
+
+
+<!-- ====================== BLOCK 6 ====================== -->
+<section class="blk" id="b6">
+  <div class="blk-head">
+    <span class="num">٦</span>
+    <div>
+      <h2>المثلثات</h2>
+      <p class="meta">١٢٠ دقيقة · جدول تحفظه + خمس قواعد</p>
+    </div>
+  </div>
+  <div class="goal">بعد هاي الكتلة: بتعرف قيم الزوايا الأساسية غيباً، وبتحلل أي دالة <span class="m"><i>A</i> sin(<i>Bx</i>+<i>C</i>)+<i>D</i></span>.</div>
+
+  <h3>٦.١ الراديان</h3>
+  <p>بالكالكولاس ما بنستعمل الدرجات. السبب عملي: قوانين الاشتقاق (مثل <span class="m">(sin <i>x</i>)′ = cos <i>x</i></span>) صحيحة <strong>فقط</strong> بالراديان.</p>
+  <div class="rule">
+    <span class="lbl">التحويل</span>
+    <div class="mb plain">180° = π راديان</div>
+    <p>للتحويل من درجات لراديان: اضرب بـ <span class="m">π/180</span>. وبالعكس: اضرب بـ <span class="m">180/π</span>.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>درجة</th><th class="tnum">0°</th><th class="tnum">30°</th><th class="tnum">45°</th><th class="tnum">60°</th><th class="tnum">90°</th><th class="tnum">180°</th><th class="tnum">270°</th><th class="tnum">360°</th></tr></thead>
+      <tbody>
+        <tr><td>راديان</td><td><span class="m">0</span></td><td><span class="m">π/6</span></td><td><span class="m">π/4</span></td><td><span class="m">π/3</span></td><td><span class="m">π/2</span></td><td><span class="m">π</span></td><td><span class="m">3π/2</span></td><td><span class="m">2π</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>٦.٢ الجدول اللي لازم تحفظه</h3>
+  <p>هذا الجدول بينحفظ بعشر دقائق وبيوفّر عليك علامات كثيرة. لاحظ النمط بالبسط: <span class="m">0, 1, <span class="sq">√<u>2</u></span>, <span class="sq">√<u>3</u></span>, 2</span> والمقام دائماً ٢.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th><span class="m">θ</span></th><th><span class="m">0</span></th><th><span class="m">π/6</span></th><th><span class="m">π/4</span></th><th><span class="m">π/3</span></th><th><span class="m">π/2</span></th><th><span class="m">π</span></th><th><span class="m">3π/2</span></th></tr></thead>
+      <tbody>
+        <tr><td><span class="m">sin θ</span></td>
+          <td><span class="m">0</span></td>
+          <td><span class="m"><span class="fr"><span>1</span><span>2</span></span></span></td>
+          <td><span class="m"><span class="fr"><span><span class="sq">√<u>2</u></span></span><span>2</span></span></span></td>
+          <td><span class="m"><span class="fr"><span><span class="sq">√<u>3</u></span></span><span>2</span></span></span></td>
+          <td><span class="m">1</span></td><td><span class="m">0</span></td><td><span class="m">−1</span></td></tr>
+        <tr><td><span class="m">cos θ</span></td>
+          <td><span class="m">1</span></td>
+          <td><span class="m"><span class="fr"><span><span class="sq">√<u>3</u></span></span><span>2</span></span></span></td>
+          <td><span class="m"><span class="fr"><span><span class="sq">√<u>2</u></span></span><span>2</span></span></span></td>
+          <td><span class="m"><span class="fr"><span>1</span><span>2</span></span></span></td>
+          <td><span class="m">0</span></td><td><span class="m">−1</span></td><td><span class="m">0</span></td></tr>
+        <tr><td><span class="m">tan θ</span></td>
+          <td><span class="m">0</span></td>
+          <td><span class="m"><span class="fr"><span>1</span><span><span class="sq">√<u>3</u></span></span></span></span></td>
+          <td><span class="m">1</span></td>
+          <td><span class="m"><span class="sq">√<u>3</u></span></span></td>
+          <td>غير معرّفة</td><td><span class="m">0</span></td><td>غير معرّفة</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tip">
+    <span class="lbl">حيلة حفظ</span>
+    <p>اكتب <span class="m">0,1,2,3,4</span>، اقسم كل واحد على ٤، وخُذ الجذر. بتطلعلك قيم <span class="m">sin</span> للزوايا <span class="m">0, π/6, π/4, π/3, π/2</span> بالترتيب. و<span class="m">cos</span> هو نفس الجدول بالعكس.</p>
+  </div>
+
+  <h3>٦.٣ الدوال الست</h3>
+  <div class="mb">tan <i>x</i> = <span class="fr"><span>sin <i>x</i></span><span>cos <i>x</i></span></span> &nbsp;·&nbsp; sec <i>x</i> = <span class="fr"><span>1</span><span>cos <i>x</i></span></span> &nbsp;·&nbsp; csc <i>x</i> = <span class="fr"><span>1</span><span>sin <i>x</i></span></span> &nbsp;·&nbsp; cot <i>x</i> = <span class="fr"><span>cos <i>x</i></span><span>sin <i>x</i></span></span></div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>الدالة</th><th>Domain</th><th>Range</th><th>Period</th><th>تماثل</th></tr></thead>
+      <tbody>
+        <tr><td><span class="m">sin <i>x</i></span></td><td><span class="m">ℝ</span></td><td><span class="m">[−1, 1]</span></td><td><span class="m">2π</span></td><td>Odd</td></tr>
+        <tr><td><span class="m">cos <i>x</i></span></td><td><span class="m">ℝ</span></td><td><span class="m">[−1, 1]</span></td><td><span class="m">2π</span></td><td>Even</td></tr>
+        <tr><td><span class="m">tan <i>x</i></span></td><td><span class="m"><i>x</i> ≠ π/2 + <i>n</i>π</span></td><td><span class="m">ℝ</span></td><td><span class="m">π</span></td><td>Odd</td></tr>
+        <tr><td><span class="m">sec <i>x</i></span></td><td><span class="m"><i>x</i> ≠ π/2 + <i>n</i>π</span></td><td><span class="m">|<i>y</i>| ≥ 1</span></td><td><span class="m">2π</span></td><td>Even</td></tr>
+        <tr><td><span class="m">csc <i>x</i></span></td><td><span class="m"><i>x</i> ≠ <i>n</i>π</span></td><td><span class="m">|<i>y</i>| ≥ 1</span></td><td><span class="m">2π</span></td><td>Odd</td></tr>
+        <tr><td><span class="m">cot <i>x</i></span></td><td><span class="m"><i>x</i> ≠ <i>n</i>π</span></td><td><span class="m">ℝ</span></td><td><span class="m">π</span></td><td>Odd</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>لاحظ المنطق: <span class="m">tan</span> و <span class="m">sec</span> مقامهم <span class="m">cos</span>، فبينعدموا لما <span class="m">cos = 0</span>. و <span class="m">csc</span> و <span class="m">cot</span> مقامهم <span class="m">sin</span>. ما في حفظ هون — في استنتاج.</p>
+
+  <h3>٦.٤ المتطابقات الأساسية</h3>
+  <div class="mb">sin<sup>2</sup><i>x</i> + cos<sup>2</sup><i>x</i> = 1</div>
+  <p>ومنها بالقسمة على <span class="m">cos<sup>2</sup><i>x</i></span> أو <span class="m">sin<sup>2</sup><i>x</i></span>:</p>
+  <div class="mb">1 + tan<sup>2</sup><i>x</i> = sec<sup>2</sup><i>x</i> &nbsp;&nbsp;،&nbsp;&nbsp; 1 + cot<sup>2</sup><i>x</i> = csc<sup>2</sup><i>x</i></div>
+  <p>وللزاوية المضاعفة:</p>
+  <div class="mb">sin 2<i>x</i> = 2 sin <i>x</i> cos <i>x</i> &nbsp;&nbsp;،&nbsp;&nbsp; cos 2<i>x</i> = cos<sup>2</sup><i>x</i> − sin<sup>2</sup><i>x</i></div>
+
+  <h3>٦.٥ تحويلات الموجة</h3>
+  <p>الشكل العام <span class="m"><i>y</i> = <i>A</i> sin(<i>Bx</i> + <i>C</i>) + <i>D</i></span>. كل حرف بيعمل شغلة وحدة:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>الحرف</th><th>شو بيتحكّم فيه</th><th>القانون</th></tr></thead>
+      <tbody>
+        <tr><td><span class="m"><i>A</i></span></td><td>ارتفاع الموجة</td><td>Amplitude = <span class="m">|<i>A</i>|</span></td></tr>
+        <tr><td><span class="m"><i>B</i></span></td><td>سرعة التكرار</td><td>Period = <span class="m">2π / |<i>B</i>|</span></td></tr>
+        <tr><td><span class="m"><i>C</i></span></td><td>الإزاحة الأفقية</td><td>Phase shift = <span class="m">−<i>C</i>/<i>B</i></span></td></tr>
+        <tr><td><span class="m"><i>D</i></span></td><td>الإزاحة العمودية</td><td>المحور الأوسط <span class="m"><i>y</i> = <i>D</i></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn">
+    <span class="lbl">لا تقرأ <span class="m"><i>C</i></span> مباشرة</span>
+    <p>لازم تُخرج <span class="m"><i>B</i></span> كعامل مشترك أول. <span class="m">sin(3<i>x</i> + π) = sin(3(<i>x</i> + π/3))</span> — فالإزاحة <span class="m">π/3</span> لليسار، مش <span class="m">π</span>.</p>
+  </div>
+  <div class="ex">
+    <span class="lbl">مثال الدكتور</span>
+    <p><span class="m"><i>y</i> = 2 sin(3<i>x</i> + π) − 1</span></p>
+    <ul style="margin-bottom:0">
+      <li>Amplitude = <span class="m">2</span></li>
+      <li>Period = <span class="m">2π/3</span></li>
+      <li>Phase shift = <span class="m">π/3</span> لليسار</li>
+      <li>إزاحة عمودية = <span class="m">1</span> لتحت، فالمحور الأوسط <span class="m"><i>y</i> = −1</span></li>
+      <li>Range = <span class="m">[−3, 1]</span> (من <span class="m">−1−2</span> إلى <span class="m">−1+2</span>)</li>
+    </ul>
+  </div>
+
+  <div class="drill">
+    <h3>تمارين الكتلة ٦</h3>
+    <ol class="qs">
+      <li>
+        <div class="q"><div>احسب: <span class="m">sin(π/3) · cos(π/6) + tan(π/4)</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <div class="mb plain"><span class="fr"><span><span class="sq">√<u>3</u></span></span><span>2</span></span> · <span class="fr"><span><span class="sq">√<u>3</u></span></span><span>2</span></span> + 1 = <span class="fr"><span>3</span><span>4</span></span> + 1 = <span class="fr"><span>7</span><span>4</span></span></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>جيب Amplitude و Period و Range لـ <span class="m"><i>y</i> = −4 cos(<i>x</i>/2) + 3</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>Amplitude = <span class="m">|−4| = 4</span> (السالب بيقلب الموجة، بس ما بيغيّر الارتفاع)</p>
+          <p><span class="m"><i>B</i> = 1/2</span> فـ Period = <span class="m">2π ÷ (1/2) = 4π</span></p>
+          <p>المحور الأوسط <span class="m"><i>y</i>=3</span>، والموجة بتروح ٤ فوق و٤ تحت:</p>
+          <div class="mb plain">Range = [−1, 7]</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>بسّط: <span class="m"><span class="fr"><span>1 − cos<sup>2</sup><i>x</i></span><span>sin <i>x</i></span></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>من المتطابقة <span class="m">1 − cos<sup>2</sup><i>x</i> = sin<sup>2</sup><i>x</i></span>:</p>
+          <div class="mb plain">= <span class="fr"><span>sin<sup>2</sup><i>x</i></span><span>sin <i>x</i></span></span> = sin <i>x</i></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>ليش <span class="m">sec <i>x</i></span> غير معرّفة عند <span class="m"><i>x</i> = π/2</span>؟</div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p><span class="m">sec <i>x</i> = 1/cos <i>x</i></span>، و <span class="m">cos(π/2) = 0</span>. المقام صفر ← غير معرّفة. نفس الشي عند <span class="m">3π/2</span> وكل <span class="m">π/2 + <i>n</i>π</span>.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <label class="done"><input type="checkbox" data-blk="6"> خلّصت الكتلة ٦</label>
+</section>
+
+
+<!-- ====================== BLOCK 7 ====================== -->
+<section class="blk" id="b7">
+  <div class="blk-head">
+    <span class="num">٧</span>
+    <div>
+      <h2>التركيب والدالة العكسية</h2>
+      <p class="meta">٩٠ دقيقة · أساس Chain Rule اللي جاي</p>
+    </div>
+  </div>
+  <div class="goal">بعد هاي الكتلة: بتركّب وبتفكّك أي دالتين، وبتطلّع العكسية مع الـ Domain تبعها.</div>
+
+  <h3>٧.١ التركيب</h3>
+  <div class="rule">
+    <span class="lbl">التعريف</span>
+    <div class="mb plain">(<i>f</i> ∘ <i>g</i>)(<i>x</i>) = <i>f</i>(<i>g</i>(<i>x</i>))</div>
+    <p>اقرأها من جوّا لبرّا: نفّذ <span class="m"><i>g</i></span> أول، وحط الناتج جوا <span class="m"><i>f</i></span>.</p>
+  </div>
+  <div class="ex">
+    <span class="lbl">مثال</span>
+    <p><span class="m"><i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup></span> و <span class="m"><i>g</i>(<i>x</i>) = <i>x</i> + 1</span></p>
+    <div class="mb plain">(<i>f</i> ∘ <i>g</i>)(<i>x</i>) = <i>f</i>(<i>x</i>+1) = (<i>x</i>+1)<sup>2</sup></div>
+    <div class="mb plain">(<i>g</i> ∘ <i>f</i>)(<i>x</i>) = <i>g</i>(<i>x</i><sup>2</sup>) = <i>x</i><sup>2</sup> + 1</div>
+    <p>والاثنين مختلفين. الترتيب مهم: <span class="m"><i>f</i> ∘ <i>g</i> ≠ <i>g</i> ∘ <i>f</i></span> بالعادة.</p>
+  </div>
+
+  <div class="warn">
+    <span class="lbl">Domain التركيب — هون بينكسر الطلاب</span>
+    <p>الـ Domain لـ <span class="m"><i>f</i>(<i>g</i>(<i>x</i>))</span> مش بس من الصيغة النهائية. لازم شرطين:</p>
+    <p><strong>١.</strong> <span class="m"><i>x</i></span> لازم تكون بـ Domain الـ <span class="m"><i>g</i></span></p>
+    <p><strong>٢.</strong> <span class="m"><i>g</i>(<i>x</i>)</span> لازم تكون بـ Domain الـ <span class="m"><i>f</i></span></p>
+    <p style="margin-top:8px">مثال: <span class="m"><i>f</i>(<i>x</i>)=<span class="sq">√<u><i>x</i></u></span></span> و <span class="m"><i>g</i>(<i>x</i>)=<i>x</i><sup>2</sup></span>. الناتج <span class="m"><span class="sq">√<u><i>x</i><sup>2</sup></u></span>=|<i>x</i>|</span> شكله Domain تبعه <span class="m">ℝ</span>، وهون فعلاً هيك. بس لو كانت <span class="m"><i>g</i>(<i>x</i>)=1/<i>x</i></span> فالصفر بيظل ممنوع حتى لو اختفى من الصيغة النهائية.</p>
+  </div>
+
+  <div class="ex">
+    <span class="lbl">مثال الدكتور</span>
+    <p><span class="m"><i>f</i>(<i>x</i>) = <span class="sq">√<u><i>x</i></u></span></span> و <span class="m"><i>g</i>(<i>x</i>) = <span class="fr"><span><i>x</i></span><span><i>x</i>−1</span></span></span></p>
+    <div class="mb plain">(<i>f</i> ∘ <i>g</i>)(<i>x</i>) = <span class="sq">√<u><span class="fr"><span><i>x</i></span><span><i>x</i>−1</span></span></u></span></div>
+    <div class="mb plain">(<i>g</i> ∘ <i>f</i>)(<i>x</i>) = <span class="fr"><span><span class="sq">√<u><i>x</i></u></span></span><span><span class="sq">√<u><i>x</i></u></span> − 1</span></span></div>
+  </div>
+
+  <h3>٧.٢ التفكيك — المهارة العكسية</h3>
+  <p>هاي المهارة اللي رح تحتاجها بـ Chain Rule: تشوف دالة مركّبة وتعرف مين جوا ومين برا.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>الدالة</th><th>الداخلية <span class="m"><i>g</i></span></th><th>الخارجية <span class="m"><i>f</i></span></th></tr></thead>
+      <tbody>
+        <tr><td><span class="m"><span class="sq">√<u><i>x</i><sup>2</sup>+1</u></span></span></td><td><span class="m"><i>x</i><sup>2</sup>+1</span></td><td><span class="m"><span class="sq">√<u>□</u></span></span></td></tr>
+        <tr><td><span class="m">sin(3<i>x</i>)</span></td><td><span class="m">3<i>x</i></span></td><td><span class="m">sin □</span></td></tr>
+        <tr><td><span class="m"><i>e</i><sup><i>x</i><sup>2</sup></sup></span></td><td><span class="m"><i>x</i><sup>2</sup></span></td><td><span class="m"><i>e</i><sup>□</sup></span></td></tr>
+        <tr><td><span class="m">(2<i>x</i>+5)<sup>7</sup></span></td><td><span class="m">2<i>x</i>+5</span></td><td><span class="m">□<sup>7</sup></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>٧.٣ One-to-One</h3>
+  <p>الدالة تضمن كل input إله output واحد. أما <strong>One-to-One</strong> فبتضمن العكس كمان: كل output إجا من input واحد بس.</p>
+  <p><strong>Horizontal Line Test:</strong> ارسم خط أفقي. إذا قطع المنحنى بأكثر من نقطة، مش One-to-One.</p>
+  <p><span class="m"><i>x</i><sup>3</sup></span> هي One-to-One. أما <span class="m"><i>x</i><sup>2</sup></span> فلأ، لأن <span class="m">2<sup>2</sup> = (−2)<sup>2</sup> = 4</span>.</p>
+  <div class="rule">
+    <span class="lbl">ليش هاي مهمة</span>
+    <p>الدالة إلها عكسية <strong>فقط</strong> إذا كانت One-to-One. لو مش هيك، العكسية رح تعطي نتيجتين لنفس المدخل فما بتكون دالة أصلاً.</p>
+    <p style="margin-top:8px">عشان هيك بنقيّد <span class="m"><i>x</i><sup>2</sup></span> بـ <span class="m"><i>x</i> ≥ 0</span>: نقص نص المنحنى عشان يصير One-to-One، ووقتها عكسيتها <span class="m"><span class="sq">√<u><i>x</i></u></span></span>.</p>
+  </div>
+
+  <h3>٧.٤ الدالة العكسية</h3>
+  <div class="warn">
+    <span class="lbl">الرمز مضلّل</span>
+    <p><span class="m"><i>f</i><sup>−1</sup>(<i>x</i>)</span> <strong>ما معناها</strong> <span class="m">1/<i>f</i>(<i>x</i>)</span>. الـ <span class="m">−1</span> هون مش أُس.</p>
+  </div>
+  <h4>الخطوات</h4>
+  <ol>
+    <li>اكتب <span class="m"><i>y</i> = <i>f</i>(<i>x</i>)</span></li>
+    <li>بدّل مكان <span class="m"><i>x</i></span> و <span class="m"><i>y</i></span></li>
+    <li>حل لـ <span class="m"><i>y</i></span></li>
+    <li>اكتبها <span class="m"><i>f</i><sup>−1</sup>(<i>x</i>)</span></li>
+  </ol>
+  <div class="ex">
+    <span class="lbl">مثال</span>
+    <p><span class="m"><i>f</i>(<i>x</i>) = 2<i>x</i> − 3</span></p>
+    <div class="mb plain"><i>y</i> = 2<i>x</i> − 3 &nbsp;→&nbsp; <i>x</i> = 2<i>y</i> − 3</div>
+    <div class="mb plain"><i>x</i> + 3 = 2<i>y</i> &nbsp;→&nbsp; <i>f</i><sup>−1</sup>(<i>x</i>) = <span class="fr"><span><i>x</i> + 3</span><span>2</span></span></div>
+  </div>
+  <div class="rule">
+    <span class="lbl">حقيقتان مهمتان</span>
+    <p><strong>١. التحقق:</strong> <span class="m"><i>f</i>(<i>f</i><sup>−1</sup>(<i>x</i>)) = <i>x</i></span> و <span class="m"><i>f</i><sup>−1</sup>(<i>f</i>(<i>x</i>)) = <i>x</i></span></p>
+    <p><strong>٢. التبديل:</strong> Domain الأصلية = Range العكسية، والعكس. والرسمتان انعكاس لبعض حول الخط <span class="m"><i>y</i> = <i>x</i></span>.</p>
+  </div>
+  <p>أشهر زوج عكسي بالكالكولاس:</p>
+  <div class="mb"><i>f</i>(<i>x</i>) = <i>e</i><sup><i>x</i></sup> &nbsp;⟷&nbsp; <i>f</i><sup>−1</sup>(<i>x</i>) = ln <i>x</i></div>
+  <p>ولاحظ إن التبديل بيفسّر كل شي: Domain الـ <span class="m"><i>e</i><sup><i>x</i></sup></span> هو <span class="m">ℝ</span> و Range هو <span class="m">(0,∞)</span>. فـ <span class="m">ln</span> Domain تبعه <span class="m">(0,∞)</span> و Range تبعه <span class="m">ℝ</span>. مش حفظ — استنتاج.</p>
+
+  <h3>٧.٥ عكسيات الدوال المثلثية</h3>
+  <p>الدوال المثلثية دورية فمش One-to-One، فبنقيّد مجالها حتى يصير إلها عكسية:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>العكسية</th><th>Domain</th><th>Range</th></tr></thead>
+      <tbody>
+        <tr><td><span class="m">sin<sup>−1</sup><i>x</i></span></td><td><span class="m">[−1, 1]</span></td><td><span class="m">[−π/2, π/2]</span></td></tr>
+        <tr><td><span class="m">cos<sup>−1</sup><i>x</i></span></td><td><span class="m">[−1, 1]</span></td><td><span class="m">[0, π]</span></td></tr>
+        <tr><td><span class="m">tan<sup>−1</sup><i>x</i></span></td><td><span class="m">ℝ</span></td><td><span class="m">(−π/2, π/2)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>لاحظ التبديل مرة ثانية: Range الـ <span class="m">sin</span> كان <span class="m">[−1,1]</span> فصار Domain الـ <span class="m">sin<sup>−1</sup></span>.</p>
+
+  <div class="drill">
+    <h3>تمارين الكتلة ٧</h3>
+    <ol class="qs">
+      <li>
+        <div class="q"><div>إذا <span class="m"><i>f</i>(<i>x</i>) = <span class="sq">√<u><i>x</i></u></span></span> و <span class="m"><i>g</i>(<i>x</i>) = 3<i>x</i> − 2</span>، جيب <span class="m">(<i>f</i> ∘ <i>g</i>)(<i>x</i>)</span> و Domain تبعها.</div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <div class="mb plain">(<i>f</i> ∘ <i>g</i>)(<i>x</i>) = <span class="sq">√<u>3<i>x</i> − 2</u></span></div>
+          <p>Domain: جوا الجذر <span class="m">≥ 0</span>:</p>
+          <div class="mb plain">3<i>x</i> − 2 ≥ 0 &nbsp;⟹&nbsp; <i>x</i> ≥ <span class="fr"><span>2</span><span>3</span></span> &nbsp;⟹&nbsp; [2/3, ∞)</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>جيب عكسية <span class="m"><i>f</i>(<i>x</i>) = <span class="fr"><span><i>x</i> + 1</span><span><i>x</i> − 2</span></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>بدّل ثم حل لـ <span class="m"><i>y</i></span>:</p>
+          <div class="mb plain"><i>x</i> = <span class="fr"><span><i>y</i> + 1</span><span><i>y</i> − 2</span></span> &nbsp;⟹&nbsp; <i>x</i>(<i>y</i> − 2) = <i>y</i> + 1</div>
+          <div class="mb plain"><i>xy</i> − 2<i>x</i> = <i>y</i> + 1</div>
+          <p>نجمع حدود <span class="m"><i>y</i></span> بطرف:</p>
+          <div class="mb plain"><i>xy</i> − <i>y</i> = 2<i>x</i> + 1 &nbsp;⟹&nbsp; <i>y</i>(<i>x</i> − 1) = 2<i>x</i> + 1</div>
+          <div class="mb plain"><i>f</i><sup>−1</sup>(<i>x</i>) = <span class="fr"><span>2<i>x</i> + 1</span><span><i>x</i> − 1</span></span></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>فكّك <span class="m"><i>h</i>(<i>x</i>) = sin<sup>2</sup>(3<i>x</i> + 1)</span> إلى ثلاث دوال مركّبة.</div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>من جوّا لبرّا:</p>
+          <p>الداخلية <span class="m"><i>u</i> = 3<i>x</i> + 1</span> ← بعدها <span class="m"><i>v</i> = sin <i>u</i></span> ← بعدها <span class="m"><i>h</i> = <i>v</i><sup>2</sup></span></p>
+          <p>هاي بالضبط اللي رح تعمله بالـ Chain Rule: تشتق من برا لجوا، طبقة طبقة.</p>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>هل <span class="m"><i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> − 4<i>x</i></span> هي One-to-One على <span class="m">ℝ</span>؟ وإذا لأ، على أي مجال بتصير؟</div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>لأ. هاي قطع مكافئ، والخط الأفقي بيقطعه بنقطتين. مثلاً <span class="m"><i>f</i>(0) = 0</span> و <span class="m"><i>f</i>(4) = 0</span>.</p>
+          <p>رأس القطع عند <span class="m"><i>x</i> = −<i>b</i>/2<i>a</i> = 2</span>. فلو قيّدنا المجال لـ <span class="m">[2, ∞)</span> (أو <span class="m">(−∞, 2]</span>) بتصير One-to-One.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <label class="done"><input type="checkbox" data-blk="7"> خلّصت الكتلة ٧</label>
+</section>
+
+
+<!-- ====================== BLOCK 8 ====================== -->
+<section class="blk" id="b8">
+  <div class="blk-head">
+    <span class="num">٨</span>
+    <div>
+      <h2>النهايات والاتصال</h2>
+      <p class="meta">٩٠ دقيقة · هون بلش الكالكولاس فعلياً</p>
+    </div>
+  </div>
+  <div class="goal">بعد هاي الكتلة: بتحل أي نهاية من نوع <span class="m">0/0</span>، وبتعرف إمتى الدالة متصلة.</div>
+
+  <h3>٨.١ الفكرة</h3>
+  <p><span class="m">lim<sub><i>x</i>→<i>a</i></sub> <i>f</i>(<i>x</i>)</span> بتسأل: لما <span class="m"><i>x</i></span> <strong>تقرب</strong> من <span class="m"><i>a</i></span>، لوين بتتجه <span class="m"><i>f</i>(<i>x</i>)</span>؟</p>
+  <div class="rule">
+    <span class="lbl">النقطة اللي بتغيّر كل شي</span>
+    <p>النهاية ما بتهتم بقيمة الدالة <strong>عند</strong> <span class="m"><i>a</i></span> — بتهتم بس بسلوكها <strong>حوالين</strong> <span class="m"><i>a</i></span>. ممكن الدالة ما تكون معرّفة عند <span class="m"><i>a</i></span> أصلاً والنهاية موجودة عادي.</p>
+  </div>
+
+  <h3>٨.٢ طريقة الحل — بالترتيب</h3>
+  <h4>الخطوة ١: عوّض مباشرة</h4>
+  <p>إذا طلع رقم عادي، خلصنا.</p>
+  <div class="mb">lim<sub><i>x</i>→2</sub> (<i>x</i> + 3) = 5</div>
+
+  <h4>الخطوة ٢: إذا طلع <span class="m">0/0</span></h4>
+  <p>هاي «صيغة غير معيّنة» — يعني ما بتخبّرك شي، لازم تشتغل. الأدوات:</p>
+
+  <div class="ex">
+    <span class="lbl">أداة ١ — التحليل والاختصار</span>
+    <div class="mb plain">lim<sub><i>x</i>→3</sub> <span class="fr"><span><i>x</i><sup>2</sup> − 9</span><span><i>x</i> − 3</span></span></div>
+    <p>التعويض بيعطي <span class="m">0/0</span>. نحلل ونختصر:</p>
+    <div class="mb plain">= lim<sub><i>x</i>→3</sub> <span class="fr"><span>(<i>x</i>−3)(<i>x</i>+3)</span><span><i>x</i>−3</span></span> = lim<sub><i>x</i>→3</sub> (<i>x</i>+3) = 6</div>
+    <p>الاختصار مسموح لأن <span class="m"><i>x</i></span> بتقرب من ٣ بس ما بتوصلها، فـ <span class="m"><i>x</i>−3 ≠ 0</span>.</p>
+  </div>
+
+  <div class="ex">
+    <span class="lbl">أداة ٢ — المرافق (لما يكون في جذر)</span>
+    <div class="mb plain">lim<sub><i>x</i>→0</sub> <span class="fr"><span><span class="sq">√<u><i>x</i>+4</u></span> − 2</span><span><i>x</i></span></span></div>
+    <p>اضرب البسط والمقام بمرافق البسط <span class="m">(<span class="sq">√<u><i>x</i>+4</u></span> + 2)</span>:</p>
+    <div class="mb plain">= <span class="fr"><span>(<i>x</i>+4) − 4</span><span><i>x</i>(<span class="sq">√<u><i>x</i>+4</u></span> + 2)</span></span> = <span class="fr"><span><i>x</i></span><span><i>x</i>(<span class="sq">√<u><i>x</i>+4</u></span> + 2)</span></span></div>
+    <div class="mb plain">= <span class="fr"><span>1</span><span><span class="sq">√<u><i>x</i>+4</u></span> + 2</span></span> → <span class="fr"><span>1</span><span>4</span></span></div>
+  </div>
+
+  <h4>الخطوة ٣: إذا طلع <span class="m">رقم / 0</span></h4>
+  <p>هاي مش غير معيّنة — النتيجة <span class="m">±∞</span>، ولازم تفحص الجهتين لتعرف الإشارة.</p>
+
+  <h3>٨.٣ النهايات من جهة واحدة</h3>
+  <div class="rule">
+    <span class="lbl">الشرط الأساسي</span>
+    <div class="mb plain">lim<sub><i>x</i>→<i>a</i></sub> <i>f</i>(<i>x</i>) موجودة &nbsp;⟺&nbsp; lim<sub><i>x</i>→<i>a</i><sup>−</sup></sub> <i>f</i>(<i>x</i>) = lim<sub><i>x</i>→<i>a</i><sup>+</sup></sub> <i>f</i>(<i>x</i>)</div>
+    <p>إذا اليمين واليسار اختلفوا، النهاية <strong>غير موجودة</strong> (DNE).</p>
+  </div>
+  <p>هاي بالضبط اللي بتفحصها بالدوال المتشعّبة، وبـ <span class="m">|<i>x</i>|/<i>x</i></span> عند الصفر (بتعطي <span class="m">−1</span> من اليسار و <span class="m">+1</span> من اليمين، فالنهاية DNE).</p>
+
+  <h3>٨.٤ النهايات عند اللانهاية</h3>
+  <p>لكسر فيه كثيرتي حدود، قارن أعلى درجة بالبسط والمقام:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>الحالة</th><th>النتيجة</th><th>مثال</th></tr></thead>
+      <tbody>
+        <tr><td>درجة البسط &lt; المقام</td><td><span class="m">0</span></td><td><span class="m"><i>x</i>/<i>x</i><sup>2</sup> → 0</span></td></tr>
+        <tr><td>الدرجتان متساويتان</td><td>نسبة المعاملات</td><td><span class="m">3<i>x</i><sup>2</sup>/2<i>x</i><sup>2</sup> → 3/2</span></td></tr>
+        <tr><td>درجة البسط &gt; المقام</td><td><span class="m">±∞</span></td><td><span class="m"><i>x</i><sup>3</sup>/<i>x</i> → ∞</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>٨.٥ الاتصال</h3>
+  <div class="rule">
+    <span class="lbl">ثلاثة شروط، كلهن لازم يتحققوا</span>
+    <p><strong>١.</strong> <span class="m"><i>f</i>(<i>a</i>)</span> معرّفة</p>
+    <p><strong>٢.</strong> <span class="m">lim<sub><i>x</i>→<i>a</i></sub> <i>f</i>(<i>x</i>)</span> موجودة (اليمين = اليسار)</p>
+    <p><strong>٣.</strong> الاثنين متساويين: <span class="m">lim<sub><i>x</i>→<i>a</i></sub> <i>f</i>(<i>x</i>) = <i>f</i>(<i>a</i>)</span></p>
+  </div>
+  <p>بالعربي: الرسمة ما فيها فجوة ولا قفزة ولا خط عمودي عند النقطة. كثيرات الحدود متصلة بكل مكان. الكسور متصلة إلا عند أصفار المقام. الجذور واللوغاريتمات متصلة على مجالها.</p>
+
+  <div class="ex">
+    <span class="lbl">النوع اللي بينسألك عنه بالامتحان</span>
+    <p>جيب <span class="m"><i>k</i></span> اللي بتخلي الدالة متصلة عند <span class="m"><i>x</i>=2</span>:</p>
+    <div class="mb plain"><i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> لما <i>x</i> &lt; 2 &nbsp;،&nbsp; <i>f</i>(<i>x</i>) = <i>kx</i> + 1 لما <i>x</i> ≥ 2</div>
+    <p>من اليسار: <span class="m">2<sup>2</sup> = 4</span>. من اليمين: <span class="m">2<i>k</i> + 1</span>. نساويهن:</p>
+    <div class="mb plain">2<i>k</i> + 1 = 4 &nbsp;⟹&nbsp; <i>k</i> = <span class="fr"><span>3</span><span>2</span></span></div>
+  </div>
+
+  <h3>٨.٦ لمحة عن المشتقة</h3>
+  <p>المشتقة هي نهاية بشكل خاص — ميل المماس:</p>
+  <div class="mb"><i>f</i>′(<i>x</i>) = lim<sub><i>h</i>→0</sub> <span class="fr"><span><i>f</i>(<i>x</i>+<i>h</i>) − <i>f</i>(<i>x</i>)</span><span><i>h</i></span></span></div>
+  <p>لاحظ إن هاي بتحتاج تعرف <span class="m"><i>f</i>(<i>x</i>+<i>h</i>)</span> — نفس المهارة من الكتلة ٤. والقاعدة السريعة اللي رح تاخدوها:</p>
+  <div class="mb">(<i>x</i><sup><i>n</i></sup>)′ = <i>n x</i><sup><i>n</i>−1</sup></div>
+  <p>فـ <span class="m">(<i>x</i><sup>2</sup>)′ = 2<i>x</i></span> و <span class="m">(<i>x</i><sup>3</sup>)′ = 3<i>x</i><sup>2</sup></span>. وهون بتفهم ليش أصررنا بالكتلة ٢ إنك تحوّل الجذور لأسس: <span class="m"><span class="sq">√<u><i>x</i></u></span> = <i>x</i><sup>1/2</sup></span> فمشتقتها <span class="m">½<i>x</i><sup>−1/2</sup></span>.</p>
+
+  <div class="drill">
+    <h3>تمارين الكتلة ٨</h3>
+    <ol class="qs">
+      <li>
+        <div class="q"><div>احسب: <span class="m">lim<sub><i>x</i>→2</sub> <span class="fr"><span><i>x</i><sup>2</sup> − 4</span><span><i>x</i><sup>2</sup> − 3<i>x</i> + 2</span></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>التعويض بيعطي <span class="m">0/0</span>. نحلل الطرفين:</p>
+          <div class="mb plain">= lim<sub><i>x</i>→2</sub> <span class="fr"><span>(<i>x</i>−2)(<i>x</i>+2)</span><span>(<i>x</i>−2)(<i>x</i>−1)</span></span> = lim<sub><i>x</i>→2</sub> <span class="fr"><span><i>x</i>+2</span><span><i>x</i>−1</span></span> = <span class="fr"><span>4</span><span>1</span></span> = 4</div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>احسب: <span class="m">lim<sub><i>x</i>→0</sub> <span class="fr"><span><span class="sq">√<u><i>x</i>+9</u></span> − 3</span><span><i>x</i></span></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>اضرب بالمرافق:</p>
+          <div class="mb plain">= <span class="fr"><span>(<i>x</i>+9) − 9</span><span><i>x</i>(<span class="sq">√<u><i>x</i>+9</u></span>+3)</span></span> = <span class="fr"><span>1</span><span><span class="sq">√<u><i>x</i>+9</u></span>+3</span></span> = <span class="fr"><span>1</span><span>6</span></span></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>هل <span class="m">lim<sub><i>x</i>→1</sub> <i>f</i>(<i>x</i>)</span> موجودة؟ &nbsp;<span class="m"><i>f</i>(<i>x</i>) = 2<i>x</i></span> لما <span class="m"><i>x</i> &lt; 1</span>، و <span class="m"><i>f</i>(<i>x</i>) = <i>x</i> + 3</span> لما <span class="m"><i>x</i> ≥ 1</span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>من اليسار: <span class="m">2(1) = 2</span></p>
+          <p>من اليمين: <span class="m">1 + 3 = 4</span></p>
+          <p>مختلفين، فالنهاية <strong>غير موجودة</strong>، والدالة غير متصلة عند <span class="m"><i>x</i>=1</span> (فيها قفزة).</p>
+        </div>
+      </li>
+      <li>
+        <div class="q"><div>احسب: <span class="m">lim<sub><i>x</i>→∞</sub> <span class="fr"><span>3<i>x</i><sup>2</sup> − <i>x</i></span><span>5<i>x</i><sup>2</sup> + 2</span></span></span></div></div>
+        <button class="rev" type="button">شوف الحل</button>
+        <div class="sol" hidden>
+          <p>الدرجتان متساويتان (٢ و ٢)، فالنتيجة نسبة معاملَي أعلى درجة:</p>
+          <div class="mb plain"><span class="fr"><span>3</span><span>5</span></span></div>
+          <p>الطريقة الرسمية: اقسم كل حد على <span class="m"><i>x</i><sup>2</sup></span>، وكل حد فيه <span class="m"><i>x</i></span> بالمقام بيروح لصفر.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <label class="done"><input type="checkbox" data-blk="8"> خلّصت الكتلة ٨</label>
+</section>
+
+<footer>
+  <h3>وبعدين؟</h3>
+  <p>لما تخلّص الثماني كتل، إنت جاهز تدخل على قوانين الاشتقاق: Power Rule، Product Rule، Quotient Rule، وبعدها Chain Rule — وهاي الأخيرة رح تفهمها بسهولة لأنك أصلاً بتعرف التركيب من الكتلة ٧.</p>
+  <p>نصيحة أخيرة: لا تدرس بالقراءة. خُد ورقة فاضية، غطّي الحلول، وحل. كل سؤال بتحله بدون نظر بيساوي عشر أسئلة بتقرأ حلها.</p>
+</footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  // reveal solutions
+  document.querySelectorAll('.rev').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var sol = btn.nextElementSibling;
+      if(!sol) return;
+      sol.hidden = !sol.hidden;
+      btn.textContent = sol.hidden ? 'شوف الحل' : 'إخفاء الحل';
+    });
+  });
+
+  // progress
+  var KEY = 'tasees.done.v1';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.done input[type=checkbox]'));
+  var fill = document.getElementById('barfill');
+  var count = document.getElementById('pcount');
+  var AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨'];
+
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; }
+  }
+  function save(state){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function paint(){
+    var n = 0;
+    boxes.forEach(function(b){
+      b.closest('.done').classList.toggle('is-done', b.checked);
+      if(b.checked) n++;
+    });
+    fill.style.width = (n / boxes.length * 100) + '%';
+    count.textContent = AR[n] + ' من ٨ كتل';
+  }
+
+  var state = load();
+  boxes.forEach(function(b){
+    if(state[b.dataset.blk]) b.checked = true;
+    b.addEventListener('change', function(){
+      state[b.dataset.blk] = b.checked;
+      save(state);
+      paint();
+    });
+  });
+  paint();
+
+  // active nav chip
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        var i = sections.indexOf(en.target);
+        if(i < 0) return;
+        links.forEach(function(a){ a.classList.remove('on'); });
+        links[i].classList.add('on');
+      });
+    }, { rootMargin: '-160px 0px -65% 0px' });
+    sections.forEach(function(s){ if(s) obs.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
